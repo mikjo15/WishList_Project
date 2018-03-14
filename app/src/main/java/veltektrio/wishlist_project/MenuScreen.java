@@ -11,5 +11,5 @@ public class MenuScreen extends AppCompatActivity {
         setContentView(R.layout.activity_menu_screen);
     }
 
-    private int BMA = 1;
+    private int BMA = 2;
 }
