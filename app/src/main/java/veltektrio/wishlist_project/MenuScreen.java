@@ -19,6 +19,8 @@ public class MenuScreen extends AppCompatActivity {
         mine_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), MyWishListActivity.class);
+
             }
         });
 
