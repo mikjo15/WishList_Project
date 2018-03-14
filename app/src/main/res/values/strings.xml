@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">WishList_Project</string>
+    <string name="app_name">Wish List</string>
+    <string name="cat_clothes">Clothes</string>
 </resources>
