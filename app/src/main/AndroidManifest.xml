@@ -17,8 +17,8 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MyWishListScreen"
-            android:label="@string/title_activity_my_wish_list_screen"
+            android:name=".MyWishListActivity"
+            android:label="@string/title_activity_my_wish_list"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
