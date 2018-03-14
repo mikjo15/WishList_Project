@@ -12,4 +12,5 @@ public class MenuScreen extends AppCompatActivity {
     }
 
     private int BMA = 2;
+    private int MSJ = BMA*2;
 }
