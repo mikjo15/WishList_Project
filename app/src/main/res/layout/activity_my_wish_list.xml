@@ -26,6 +26,7 @@
         app:layout_anchor="@+id/fab"
         app:layout_anchorGravity="left|bottom" />
 
+
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
         android:layout_width="wrap_content"
@@ -35,13 +36,5 @@
         app:layout_anchor="@+id/include"
         app:layout_anchorGravity="right|top"
         app:srcCompat="@android:drawable/ic_input_add" />
-
-    <fragment
-        android:id="@+id/MyWishList_ItemListFragment"
-        android:name="veltektrio.wishlist_project.ItemListFragment"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        tools:layout_editor_absoluteX="174dp" />
 
 </android.support.design.widget.CoordinatorLayout>
