@@ -5,7 +5,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#7979d2"
     tools:context="veltektrio.wishlist_project.ListOfFriendsActivity">
 
     <android.support.v7.widget.RecyclerView
