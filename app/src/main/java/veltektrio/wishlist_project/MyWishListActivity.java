@@ -19,6 +19,7 @@ public class MyWishListActivity extends AppCompatActivity {
     public static Wishlist myWishlist;
     private Fragment fragment_popup;
     private FragmentManager mfragmentManager;
+    private Fragment fragment_recycle;
 
     @BindView(R.id.itemlist_recycler_view)
     public RecyclerView recyclerView;
@@ -48,24 +49,8 @@ public class MyWishListActivity extends AppCompatActivity {
         });
 
         /* ----------------------- til recycleview -----------------------------------*/
-        ButterKnife.bind(this);
-
-        recyclerView.setHasFixedSize(true);
-
-        layoutManager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(layoutManager);
-
-        //Dummy data
-        myWishlist = new Wishlist("Test wishlist");
-        Wish firstWish = new Wish("name", "size", "url", 66, "note", "color", "shop");
-        Wish firstWish2 = new Wish("name2", "size", "url", 66, "note", "color", "shop");
-        Wish firstWish3 = new Wish("name3", "size", "url", 66, "note", "color", "shop");
-        myWishlist.add_wish(firstWish);
-        myWishlist.add_wish(firstWish2);
-        myWishlist.add_wish(firstWish3);
-
-        adapter = new WishListAdapter(myWishlist);
-        recyclerView.setAdapter(adapter);
+        fragment_recycle = new ItemListFragment();
+        mfragmentManager.beginTransaction().add(R.id.MyWishList_ItemListFragment, fragment_recycle);
     }
 
 }

@@ -82,4 +82,7 @@ public class WishListAdapter extends RecyclerView.Adapter<WishListAdapter.ViewHo
             input_shop = v.findViewById(R.id.InputText_shop);
         }
     }
+
+    //Tilføj update funktion. Denne skal bruges når der tilføjes eller redigeres ønsker
+    //Opret unikt ID på alle vores ønsker
 }

@@ -5,5 +5,7 @@
     android:layout_height="wrap_content"
     android:background="@drawable/button"
     android:textColor="#ffffff"
+    android:layout_margin="10dp"
+    android:elevation="@dimen/app_bar_height"
     xmlns:android="http://schemas.android.com/apk/res/android">
 </Button>

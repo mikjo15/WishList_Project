@@ -66,32 +66,18 @@ public class AddWishFragment extends Fragment {
         //tester om editText er tomme
         if (!TextUtils.isEmpty(et_name.getText()))
             name = et_name.getText().toString();
-        else
-            name = "";
         if (!TextUtils.isEmpty(et_size.getText()))
             size = et_size.getText().toString();
-        else
-            size = "";
         if (!TextUtils.isEmpty(et_link.getText()))
             link = et_link.getText().toString();
-        else
-            link = "";
         if (!TextUtils.isEmpty(et_price.getText()))
             price = Double.parseDouble(et_price.getText().toString());
-        else
-            price = 0.00;
         if (!TextUtils.isEmpty(et_color.getText()))
             color = et_color.getText().toString();
-        else
-            color = "";
         if (!TextUtils.isEmpty(et_shop.getText()))
             shop = et_shop.getText().toString();
-        else
-            shop = "";
         if (!TextUtils.isEmpty(et_note.getText()))
             note = et_note.getText().toString();
-        else
-            note = "";
         //Opretter wish med alle de felter der er
 
         Wish newWish = new Wish(name, size, link, price, color, shop, note);
