@@ -31,7 +31,7 @@ public class MyWishListActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               mfragmentManager.beginTransaction().replace(R.id.?????????, fragment_popup).commit();
+               mfragmentManager.beginTransaction().replace(R.id.MyWishlist_ItemListFragment, fragment_popup).commit();
                //overskriv det fragment der viser cardview
                 //Det samme skal gøres inden fra fragment ved add wish button. Her kan man tilgå aktivitenten og derfor altid fragment
             }
