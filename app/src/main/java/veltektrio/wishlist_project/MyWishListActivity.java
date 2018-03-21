@@ -39,7 +39,11 @@ public class MyWishListActivity extends AppCompatActivity {
          * Creates new CustomAdapter, with the dataset of numbers
          * and makes it the adapter for the recyclerview
          */
-        adapter = new WishListAdapter();
+        Wishlist testList = new Wishlist();
+        Wish firstWish = new Wish("name", "size", "url", 66, "note", "color", "shop");
+        testList.add_wish(firstWish);
+
+        adapter = new WishListAdapter(testList);
         recyclerView.setAdapter(adapter);
     }
 

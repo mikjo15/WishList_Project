@@ -5,9 +5,8 @@ package veltektrio.wishlist_project;
  */
 
 public class Wish {
-    public Wish(String n, category cat, String s, String u, double p, String no, String c, String sh){
+    public Wish(String n, String s, String u, double p, String no, String c, String sh){
     name = n;
-    cat_id = cat;
     size = s;
     url = u;
     price = p;
