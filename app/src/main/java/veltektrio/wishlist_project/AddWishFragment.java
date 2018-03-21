@@ -4,105 +4,109 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.Unbinder;
 
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link AddWishFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link AddWishFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class AddWishFragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private String name;
+    private String size;
+    private String link;
+    private double price;
+    private String color;
+    private String shop;
+    private String note;
 
-    private OnFragmentInteractionListener mListener;
+    @BindView(R.id.editText_name)
+    public EditText et_name;
 
-    public AddWishFragment() {
-        // Required empty public constructor
-    }
+    @BindView(R.id.editText_size)
+    public EditText et_size;
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment AddWishFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static AddWishFragment newInstance(String param1, String param2) {
-        AddWishFragment fragment = new AddWishFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
+    @BindView(R.id.editText_link)
+    public EditText et_link;
+
+    @BindView(R.id.editText_price)
+    public EditText et_price;
+
+    @BindView(R.id.editText_color)
+    public EditText et_color;
+
+    @BindView(R.id.editText_shop)
+    public EditText et_shop;
+
+    @BindView(R.id.editText_note)
+    public EditText et_note;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+        ButterKnife.bind(getActivity());
+
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+    public View onCreateView (LayoutInflater inflater, ViewGroup container,
+                              Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_add_wish, container, false);
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
+    public void addWish (View v){
+        //tester om editText er tomme
+        if(!TextUtils.isEmpty(et_name.getText()))
+            name = et_name.getText().toString();
+        else
+            name = "";
+        if(!TextUtils.isEmpty(et_size.getText()))
+            size = et_size.getText().toString();
+        else
+            size = "";
+        if(!TextUtils.isEmpty(et_link.getText()))
+            link = et_link.getText().toString();
+        else
+            link = "";
+        if(!TextUtils.isEmpty(et_price.getText()))
+            price = Double.parseDouble(et_price.getText().toString());
+        else
+            price = 0.00;
+        if(!TextUtils.isEmpty(et_color.getText()))
+            color = et_color.getText().toString();
+        else
+            color = "";
+        if(!TextUtils.isEmpty(et_shop.getText()))
+            shop = et_shop.getText().toString();
+        else
+            shop = "";
+        if(!TextUtils.isEmpty(et_note.getText()))
+            note = et_note.getText().toString();
+        else
+            note = "";
+
+
+        //Opretter wish med alle de felter der er
+
+        Wish newWish = new Wish(name, size, link, price, color, shop, note);
+
+        MyWishListActivity.myWishlist.add_wish(newWish);
+
+        //Her skal fragmentet lukkes
+        closeFragment();
+
+
+
+
     }
 
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        mListener = null;
-    }
-
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
-    public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
+    public void closeFragment(){
+            getActivity().onBackPressed();
     }
 }

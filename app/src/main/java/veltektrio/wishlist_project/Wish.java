@@ -5,15 +5,14 @@ package veltektrio.wishlist_project;
  */
 
 public class Wish {
-    public Wish(String n, category cat, String s, String u, double p, String no, String c, String sh){
+    public Wish(String n, String s, String u, double p,  String c, String sh, String no){
     name = n;
-    cat_id = cat;
     size = s;
     url = u;
     price = p;
-    note = no;
     color = c;
     shop = sh;
+    note = no;
     }
 
     public Wish(){}
@@ -25,7 +24,7 @@ public class Wish {
     private String size = "NO SIZE";
     private String url = "";
     private double price = 0.0;
-    private String note = "NO NOTE";
     private String color = "NO COLOR";
     private String shop = "NO SHOP";
+    private String note = "NO NOTE";
 }

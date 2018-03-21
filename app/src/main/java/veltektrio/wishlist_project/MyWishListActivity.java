@@ -9,6 +9,8 @@ import android.view.View;
 
 public class MyWishListActivity extends AppCompatActivity {
 
+    public static Wishlist myWishlist;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
