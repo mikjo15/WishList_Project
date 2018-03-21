@@ -6,4 +6,5 @@
     <string name="title_activity_my_wish_list">MyWishListActivity</string>
     <string name="mine_btn">Mine</string>
     <string name="friends_btn">Friends</string>
+    <string name="title_activity_list_of_friends">ListOfFriendsActivity</string>
 </resources>

@@ -19,8 +19,8 @@ public class MenuScreen extends AppCompatActivity {
         mine_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), MyWishListActivity.class);
-
+                Intent mine_intent = new Intent(getApplicationContext(), MyWishListActivity.class);
+                startActivity(mine_intent);
             }
         });
 
@@ -28,6 +28,8 @@ public class MenuScreen extends AppCompatActivity {
         friends_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Intent friends_intend = new Intent(getApplicationContext(), ListOfFriendsActivity.class);
+                startActivity(friends_intend);
             }
         });
     }
