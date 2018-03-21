@@ -18,7 +18,8 @@
         </activity>
         <activity
             android:name=".MyWishListActivity"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".ListOfFriendsActivity"></activity>
     </application>
 
 </manifest>
