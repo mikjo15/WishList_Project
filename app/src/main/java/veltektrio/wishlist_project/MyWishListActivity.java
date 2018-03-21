@@ -36,7 +36,6 @@ public class MyWishListActivity extends AppCompatActivity {
                 //Det samme skal gøres inden fra fragment ved add wish button. Her kan man tilgå aktivitenten og derfor altid fragment
             }
         });
-
     }
 
 }
