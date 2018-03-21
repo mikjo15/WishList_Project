@@ -16,4 +16,8 @@
     <string name="AddWish_link">Link</string>
     <string name="AddWish_size">Size</string>
     <string name="AddWish_name">Name</string>
+    <string name="title_activity_list_of_friends">ListOfFriendsActivity</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
