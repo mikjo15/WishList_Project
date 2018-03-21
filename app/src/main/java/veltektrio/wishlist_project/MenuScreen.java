@@ -28,8 +28,8 @@ public class MenuScreen extends AppCompatActivity {
         friends_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-       //         Intent friends_intend = new Intent(getApplicationContext(), FriendsWishListActivity.class);
-         //       startActivity(friends_intend);
+                Intent friends_intend = new Intent(getApplicationContext(), ListOfFriendsActivity.class);
+                startActivity(friends_intend);
             }
         });
     }
