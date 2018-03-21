@@ -3,7 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="veltektrio.wishlist_project.ItemListFragment"
-    android:background="#0000ff">
+    android:background="#0000ff"
+    android:id="@+id/MyWishList_ItemListFragment">
 
 
 
