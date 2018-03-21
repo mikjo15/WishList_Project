@@ -13,6 +13,7 @@ import android.widget.EditText;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 
 public class AddWishFragment extends Fragment {
@@ -24,8 +25,10 @@ public class AddWishFragment extends Fragment {
     private String color;
     private String shop;
     private String note;
-    private Button addWishButton;
     private Fragment recycleview_fragment;
+
+    @BindView(R.id.button_1)
+    public Button addWishButton;
 
     @BindView(R.id.editText_name)
     public EditText et_name;
@@ -52,59 +55,57 @@ public class AddWishFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ButterKnife.bind(getActivity());
-        addWishButton = getActivity().findViewById(R.id.button);
+        //addWishButton = getActivity().findViewById(R.id.button);
         recycleview_fragment = new ItemListFragment();
 
     }
 
+    @OnClick(R.id.button_1)
+    public void addWishClick() {
+        System.out.println("TRYK");
+        //tester om editText er tomme
+        if (!TextUtils.isEmpty(et_name.getText()))
+            name = et_name.getText().toString();
+        else
+            name = "";
+        if (!TextUtils.isEmpty(et_size.getText()))
+            size = et_size.getText().toString();
+        else
+            size = "";
+        if (!TextUtils.isEmpty(et_link.getText()))
+            link = et_link.getText().toString();
+        else
+            link = "";
+        if (!TextUtils.isEmpty(et_price.getText()))
+            price = Double.parseDouble(et_price.getText().toString());
+        else
+            price = 0.00;
+        if (!TextUtils.isEmpty(et_color.getText()))
+            color = et_color.getText().toString();
+        else
+            color = "";
+        if (!TextUtils.isEmpty(et_shop.getText()))
+            shop = et_shop.getText().toString();
+        else
+            shop = "";
+        if (!TextUtils.isEmpty(et_note.getText()))
+            note = et_note.getText().toString();
+        else
+            note = "";
+        //Opretter wish med alle de felter der er
+
+        Wish newWish = new Wish(name, size, link, price, color, shop, note);
+
+        MyWishListActivity.myWishlist.add_wish(newWish);
+
+        getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.MyWishList_ItemListFragment, recycleview_fragment).commit();
+    }
     @Override
-    public View onCreateView (LayoutInflater inflater, ViewGroup container,
-                              Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
 
-
-        addWishButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                //tester om editText er tomme
-                if (!TextUtils.isEmpty(et_name.getText()))
-                    name = et_name.getText().toString();
-                else
-                    name = "";
-                if (!TextUtils.isEmpty(et_size.getText()))
-                    size = et_size.getText().toString();
-                else
-                    size = "";
-                if (!TextUtils.isEmpty(et_link.getText()))
-                    link = et_link.getText().toString();
-                else
-                    link = "";
-                if (!TextUtils.isEmpty(et_price.getText()))
-                    price = Double.parseDouble(et_price.getText().toString());
-                else
-                    price = 0.00;
-                if (!TextUtils.isEmpty(et_color.getText()))
-                    color = et_color.getText().toString();
-                else
-                    color = "";
-                if (!TextUtils.isEmpty(et_shop.getText()))
-                    shop = et_shop.getText().toString();
-                else
-                    shop = "";
-                if (!TextUtils.isEmpty(et_note.getText()))
-                    note = et_note.getText().toString();
-                else
-                    note = "";
-                //Opretter wish med alle de felter der er
-
-                Wish newWish = new Wish(name, size, link, price, color, shop, note);
-
-                MyWishListActivity.myWishlist.add_wish(newWish);
-
-                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.MyWishList_ItemListFragment, recycleview_fragment ).commit();
-            }
-        });
-        return inflater.inflate(R.layout.fragment_add_wish, container, false);
+        View v = inflater.inflate(R.layout.fragment_add_wish, container, false);
+        ButterKnife.bind(this,v);
+        return v;
     }
 }

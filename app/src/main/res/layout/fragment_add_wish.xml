@@ -163,11 +163,10 @@
         app:layout_constraintStart_toStartOf="@+id/guideline" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/button_1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:onClick="addWish"
         android:text="@string/AddWish_button_add"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"

@@ -56,15 +56,15 @@ public class MyWishListActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
 
         //Dummy data
-        Wishlist testList = new Wishlist("Test wishlist");
+        myWishlist = new Wishlist("Test wishlist");
         Wish firstWish = new Wish("name", "size", "url", 66, "note", "color", "shop");
         Wish firstWish2 = new Wish("name2", "size", "url", 66, "note", "color", "shop");
         Wish firstWish3 = new Wish("name3", "size", "url", 66, "note", "color", "shop");
-        testList.add_wish(firstWish);
-        testList.add_wish(firstWish2);
-        testList.add_wish(firstWish3);
+        myWishlist.add_wish(firstWish);
+        myWishlist.add_wish(firstWish2);
+        myWishlist.add_wish(firstWish3);
 
-        adapter = new WishListAdapter(testList);
+        adapter = new WishListAdapter(myWishlist);
         recyclerView.setAdapter(adapter);
     }
 
