@@ -47,7 +47,7 @@ public class WishListAdapter extends RecyclerView.Adapter<WishListAdapter.ViewHo
     public void onBindViewHolder(final WishListAdapter.ViewHolder holder, int position) {
         final String message = String.format("Setting textview for position: %s" , position);
         Log.i("Holder",message);
-        holder.textView.setText(numbers.get(position).toString());
+        //holder.textView.setText(numbers.get(position).toString());
         holder.textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

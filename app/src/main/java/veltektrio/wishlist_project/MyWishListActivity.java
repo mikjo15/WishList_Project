@@ -17,8 +17,6 @@ public class MyWishListActivity extends AppCompatActivity {
     private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
 
-    ArrayList<Integer> numbers;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,7 +34,7 @@ public class MyWishListActivity extends AppCompatActivity {
         });
 
         /**
-         * Creates new CustomAdapter, with the dataset of numbers
+         * Creates new CustomAdapter, that takes an object of the WishList type as input
          * and makes it the adapter for the recyclerview
          */
         Wishlist testList = new Wishlist();
