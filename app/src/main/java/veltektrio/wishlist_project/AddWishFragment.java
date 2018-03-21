@@ -25,6 +25,7 @@ public class AddWishFragment extends Fragment {
     private String shop;
     private String note;
     private Button addWishButton;
+    private Fragment recycleview_fragment;
 
     @BindView(R.id.editText_name)
     public EditText et_name;
@@ -53,6 +54,7 @@ public class AddWishFragment extends Fragment {
         super.onCreate(savedInstanceState);
         ButterKnife.bind(getActivity());
         addWishButton = getActivity().findViewById(R.id.button);
+        recycleview_fragment = new ItemListFragment();
 
     }
 
@@ -100,7 +102,7 @@ public class AddWishFragment extends Fragment {
 
                 MyWishListActivity.myWishlist.add_wish(newWish);
 
-                getActivity().getSupportFragmentManager().beginTransaction().remove(null).commit();
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.MyWishList_ItemListFragment, recycleview_fragment ).commit();
             }
         });
         return inflater.inflate(R.layout.fragment_add_wish, container, false);

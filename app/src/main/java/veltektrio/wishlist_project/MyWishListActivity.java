@@ -1,12 +1,12 @@
 package veltektrio.wishlist_project;
 
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.widget.Button;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
@@ -32,6 +32,7 @@ public class MyWishListActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        /*--------------------- til addWish ----------------------------------------*/
         mfragmentManager = getSupportFragmentManager();
         fragment_popup = new AddWishFragment();
 
@@ -40,11 +41,13 @@ public class MyWishListActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               mfragmentManager.beginTransaction().replace(R.id.MyWishlist_ItemListFragment, fragment_popup).commit();
+               mfragmentManager.beginTransaction().replace(R.id.MyWishList_ItemListFragment, fragment_popup).commit();
                //overskriv det fragment der viser cardview
                 //Det samme skal gøres inden fra fragment ved add wish button. Her kan man tilgå aktivitenten og derfor altid fragment
             }
         });
+
+        /* ----------------------- til recycleview -----------------------------------*/
         ButterKnife.bind(this);
 
         recyclerView.setHasFixedSize(true);
@@ -52,7 +55,7 @@ public class MyWishListActivity extends AppCompatActivity {
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
-
+        //Dummy data
         Wishlist testList = new Wishlist("Test wishlist");
         Wish firstWish = new Wish("name", "size", "url", 66, "note", "color", "shop");
         Wish firstWish2 = new Wish("name2", "size", "url", 66, "note", "color", "shop");
@@ -60,7 +63,6 @@ public class MyWishListActivity extends AppCompatActivity {
         testList.add_wish(firstWish);
         testList.add_wish(firstWish2);
         testList.add_wish(firstWish3);
-
 
         adapter = new WishListAdapter(testList);
         recyclerView.setAdapter(adapter);
