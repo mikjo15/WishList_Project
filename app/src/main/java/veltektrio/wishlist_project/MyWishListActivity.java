@@ -4,10 +4,20 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
+import java.util.ArrayList;
+
+
 public class MyWishListActivity extends AppCompatActivity {
+
+    private RecyclerView recyclerView;
+    private RecyclerView.Adapter adapter;
+    private RecyclerView.LayoutManager layoutManager;
+
+    ArrayList<Integer> numbers;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +34,13 @@ public class MyWishListActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+
+        /**
+         * Creates new CustomAdapter, with the dataset of numbers
+         * and makes it the adapter for the recyclerview
+         */
+        adapter = new WishListAdapter();
+        recyclerView.setAdapter(adapter);
     }
 
 }

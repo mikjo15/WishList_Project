@@ -18,10 +18,10 @@ import static android.support.design.widget.Snackbar.LENGTH_LONG;
 
 public class WishListAdapter extends RecyclerView.Adapter<WishListAdapter.ViewHolder> {
 
-    ArrayList<Integer> numbers;
+    Wishlist currentList;
 
-    public CustomAdapter(ArrayList<Integer> numbers) {
-        this.numbers = numbers;
+    public WishListAdapter(Wishlist currentlist) {
+        this.currentList = currentlist;
     }
 
     /**
@@ -32,7 +32,7 @@ public class WishListAdapter extends RecyclerView.Adapter<WishListAdapter.ViewHo
      */
     @Override
     public WishListAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        TextView tv = (TextView) LayoutInflater.from(parent.getContext()).inflate(R.layout.random_textview, parent, false);
+        TextView tv = (TextView) LayoutInflater.from(parent.getContext()).inflate(R.layout.item_list_recycleview, parent, false);
         ViewHolder vh = new ViewHolder(tv);
         return vh;
     }
