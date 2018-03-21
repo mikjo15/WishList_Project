@@ -1,6 +1,7 @@
 package veltektrio.wishlist_project;
 
 import android.support.design.widget.Snackbar;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -32,9 +33,9 @@ public class WishListAdapter extends RecyclerView.Adapter<WishListAdapter.ViewHo
      */
     @Override
     public WishListAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        TextView tv = (TextView) LayoutInflater.from(parent.getContext()).inflate(R.layout.item_list_recycleview, parent, false);
-        ViewHolder vh = new ViewHolder(tv);
-        return vh;
+        View v = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.item_list_recycleview, parent, false);
+        return new ViewHolder(v);
     }
 
 
@@ -47,52 +48,38 @@ public class WishListAdapter extends RecyclerView.Adapter<WishListAdapter.ViewHo
     public void onBindViewHolder(final WishListAdapter.ViewHolder holder, int position) {
         final String message = String.format("Setting textview for position: %s" , position);
         Log.i("Holder",message);
-        //holder.textView.setText(numbers.get(position).toString());
-        holder.textView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                deleteItem(holder.getAdapterPosition(),v);
-            }
-        });
-
+        Wish currentwish = currentList.getWish(position);
+        holder.input_name.setText(currentwish.getName());
+        holder.input_size.setText(currentwish.getItemSize());
+        holder.input_url.setText(currentwish.getUrl());
+        holder.input_price.setText(Double.toString(currentwish.getPrice()));
+        holder.input_note.setText(currentwish.getNote());
+        holder.input_color.setText(currentwish.getColor());
+        holder.input_shop.setText(currentwish.getShop());
     }
 
     @Override
-    public int getItemCount() {
-        Log.i("Holder",String.format("Getting item count: %s",numbers.size()));
-        return numbers.size();
-    }
+    public int getItemCount() { return currentList.getSize();    }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        // each data item is just a string in this case
-        public TextView textView;
 
-        public ViewHolder(TextView v) {
+        public TextView input_name;
+        public TextView input_size;
+        public TextView input_url;
+        public TextView input_price;
+        public TextView input_note;
+        public TextView input_color;
+        public TextView input_shop;
+
+        public ViewHolder(View v) {
             super(v);
-            textView = v;
+            input_name = v.findViewById(R.id.InputText_name);
+            input_size = v.findViewById(R.id.InputText_size);
+            input_url = v.findViewById(R.id.InputText_link);
+            input_price = v.findViewById(R.id.InputText_price);
+            input_note = v.findViewById(R.id.InputText_note);
+            input_color = v.findViewById(R.id.InputText_color);
+            input_shop = v.findViewById(R.id.InputText_shop);
         }
-    }
-
-    /**
-     * Deletes item at position
-     * Creates a snackbar with the option to undo deletion
-     * @param position
-     * @param v View used for snackbar to find go back hierarychally and find coordinator layout
-     */
-    public void deleteItem(final int position, View v){
-        String message = String.format("Removing item at position: %s with value: %s",position,numbers.get(position));
-        Log.i("Holder", message);
-        final int number = numbers.get(position);
-        Snackbar snack = Snackbar.make(v,message, LENGTH_LONG);
-        snack.setAction("Undo", new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                numbers.add(position,number);
-                notifyDataSetChanged();
-            }
-        });
-        snack.show();
-        numbers.remove(position);
-        notifyDataSetChanged();
     }
 }
