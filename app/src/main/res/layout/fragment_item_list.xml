@@ -1,17 +1,22 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="veltektrio.wishlist_project.ItemListFragment"
-    android:background="#99f">
-
+    android:background="@color/colorBackground"
+    tools:context="veltektrio.wishlist_project.ItemListFragment">
 
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/itemlist_recycler_view"
-        android:layout_width = "match_parent"
-        android:layout_height = "match_parent"
-        >
+        android:layout_width="307dp"
+        android:layout_height="510dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginStart="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="0dp">
+
     </android.support.v7.widget.RecyclerView>
 
-</FrameLayout>
+</android.support.constraint.ConstraintLayout>
