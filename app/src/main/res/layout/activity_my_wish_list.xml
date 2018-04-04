@@ -33,10 +33,10 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
-        app:backgroundTint="@android:color/holo_orange_dark"
+        app:backgroundTint="@color/colorSecondary"
         app:layout_anchor="@+id/include"
         app:layout_anchorGravity="right|top"
-        app:rippleColor="@color/colorPrimary"
+        app:rippleColor="@color/colorSecondaryLight"
         app:srcCompat="@android:drawable/ic_input_add" />
 
 </android.support.design.widget.CoordinatorLayout>

@@ -1,9 +1,8 @@
 package veltektrio.wishlist_project;
 
-import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,8 +14,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-
-public class AddWishFragment extends Fragment {
+public class AddWishActivity extends AppCompatActivity {
 
     private String name;
     private String size;
@@ -25,9 +23,8 @@ public class AddWishFragment extends Fragment {
     private String color;
     private String shop;
     private String note;
-    private Fragment recycleview_fragment;
 
-    @BindView(R.id.button_1)
+    @BindView(R.id.addWishButton2)
     public Button addWishButton;
 
     @BindView(R.id.editText_name)
@@ -55,12 +52,12 @@ public class AddWishFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //addWishButton = getActivity().findViewById(R.id.button);
-        recycleview_fragment = new ItemListFragment();
+        setContentView(R.layout.activity_add_wish);
+        ButterKnife.bind(this);
 
     }
 
-    @OnClick(R.id.button_1)
+    @OnClick(R.id.addWishButton2)
     public void addWishClick() {
         System.out.println("TRYK");
         //tester om editText er tomme
@@ -84,14 +81,6 @@ public class AddWishFragment extends Fragment {
 
         MyWishListActivity.myWishlist.add_wish(newWish);
 
-        getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.MyWishList_ItemListFragment, recycleview_fragment).commit();
-    }
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-
-        View v = inflater.inflate(R.layout.fragment_add_wish, container, false);
-        ButterKnife.bind(this,v);
-        return v;
+        finish();
     }
 }

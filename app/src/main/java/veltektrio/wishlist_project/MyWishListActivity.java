@@ -1,5 +1,6 @@
 package veltektrio.wishlist_project;
 
+import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -35,16 +36,14 @@ public class MyWishListActivity extends AppCompatActivity {
 
         /*--------------------- til addWish ----------------------------------------*/
         mfragmentManager = getSupportFragmentManager();
-        fragment_popup = new AddWishFragment();
 
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               mfragmentManager.beginTransaction().replace(R.id.MyWishList_ItemListFragment, fragment_popup).commit();
-               //overskriv det fragment der viser cardview
-                //Det samme skal gøres inden fra fragment ved add wish button. Her kan man tilgå aktivitenten og derfor altid fragment
+                Intent intent_add = new Intent(getApplicationContext(), AddWishActivity.class);
+                startActivity(intent_add);
             }
         });
 
