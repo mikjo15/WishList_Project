@@ -15,7 +15,7 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="@color/colorPrimaryDark"
+            android:background="@color/colorPrimary"
             app:popupTheme="@style/AppTheme.PopupOverlay" />
 
     </android.support.design.widget.AppBarLayout>
@@ -24,19 +24,20 @@
         android:id="@+id/include"
         layout="@layout/content_my_wish_list"
         app:layout_anchor="@+id/fab"
-        app:layout_anchorGravity="left|bottom" />
-
+        app:layout_anchorGravity="left|center"/>
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
+        android:layout_height="53dp"
         android:layout_margin="@dimen/fab_margin"
+        android:elevation="@dimen/app_bar_height"
         app:backgroundTint="@color/colorSecondary"
+        app:fabSize="normal"
         app:layout_anchor="@+id/include"
-        app:layout_anchorGravity="right|top"
+        app:layout_anchorGravity="right|bottom"
         app:rippleColor="@color/colorSecondaryLight"
-        app:srcCompat="@android:drawable/ic_input_add" />
+        tools:layout_editor_absoluteY="31dp" />
+
 
 </android.support.design.widget.CoordinatorLayout>

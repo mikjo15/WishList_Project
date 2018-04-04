@@ -39,9 +39,11 @@ public class MyWishListActivity extends AppCompatActivity {
 
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setImageResource(R.drawable.ic_add_black_24dp);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                System.out.println("fab click to addWish");
                 Intent intent_add = new Intent(getApplicationContext(), AddWishActivity.class);
                 startActivity(intent_add);
             }

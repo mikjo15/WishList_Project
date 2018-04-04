@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimaryLight"
+    android:background="@color/colorBackground"
     tools:context="veltektrio.wishlist_project.MenuScreen">
 
 
@@ -19,7 +19,7 @@
         android:background="@drawable/button"
         android:elevation="@dimen/app_bar_height"
         android:text="@string/mine_btn"
-        android:textColor="#212121"
+        android:textColor="@color/colorText"
         android:textSize="50dp"
         app:layout_constraintBottom_toTopOf="@+id/guideline2"
         app:layout_constraintEnd_toEndOf="parent"
@@ -38,7 +38,7 @@
         android:background="@drawable/button"
         android:elevation="@dimen/app_bar_height"
         android:text="@string/friends_btn"
-        android:textColor="#212121"
+        android:textColor="@color/colorText"
         android:textSize="50dp"
         android:radius="80dp"
         app:layout_constraintBottom_toBottomOf="parent"

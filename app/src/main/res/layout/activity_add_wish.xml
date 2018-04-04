@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="veltektrio.wishlist_project.AddWishActivity"
     android:background="@color/colorBackground">
 
-    <EditText
+
+
+   <EditText
         android:id="@+id/editText_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -19,15 +20,15 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline" />
 
-    <TextView
-        android:id="@+id/textView_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="32dp"
-        android:text="@string/AddWish_name"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+ <TextView
+     android:id="@+id/textView_name"
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content"
+     android:layout_marginStart="24dp"
+     android:layout_marginTop="32dp"
+     android:text="@string/AddWish_name"
+     app:layout_constraintStart_toStartOf="parent"
+     app:layout_constraintTop_toTopOf="parent" />
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline"
@@ -162,14 +163,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline" />
 
-    <Button
-        android:id="@+id/addWishButton2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="@string/AddWish_button_add"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText_note" />
+ <android.support.design.widget.FloatingActionButton
+     android:id="@+id/fab_add"
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content"
+     android:layout_margin="16dp"
+     android:layout_marginBottom="16dp"
+     android:layout_marginRight="16dp"
+     app:backgroundTint="@color/colorSecondary"
+     app:fabSize="normal"
+     app:layout_constraintBottom_toBottomOf="parent"
+     app:layout_constraintRight_toRightOf="parent" />
 
 </android.support.constraint.ConstraintLayout>
