@@ -34,7 +34,7 @@ public class ItemListFragment extends Fragment {
         //Dummy data
         MyWishListActivity.myWishlist = new Wishlist("Test wishlist");
         Wish firstWish = new Wish("name", "size", "url", 66, "note", "color", "shop");
-        Wish firstWish2 = new Wish("name2", "size2", "url2", 67, "note2", "color2", "shop2");
+        Wish firstWish2 = new Wish("name2", "", "", 67, "note2", "color2", "shop2");
         Wish firstWish3 = new Wish("name3", "size3", "url3", 68, "note3", "color3", "shop3");
         MyWishListActivity.myWishlist.add_wish(firstWish);
         MyWishListActivity.myWishlist.add_wish(firstWish2);
