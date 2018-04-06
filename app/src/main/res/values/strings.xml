@@ -17,5 +17,6 @@
     <string name="AddWish_color">Color:</string>
     <string name="AddWish_shop">Shop:</string>
     <string name="AddWish_note">Note:</string>
-    <string name="AddWish_button_add">Add wish to list</string>
+    <string name="AddFriend_name">Friend\'s name:</string>
+    <string name="AddFriend_id">Friend\'s ID:</string>
 </resources>

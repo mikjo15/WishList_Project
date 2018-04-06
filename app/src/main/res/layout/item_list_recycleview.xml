@@ -2,6 +2,7 @@
     <!-- A CardView that contains all our needed information -->
     <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
         xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/card_view"
         android:layout_margin="10dp"
         android:layout_width="match_parent"
@@ -21,39 +22,30 @@
                 android:id="@+id/InputText_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="24dp"
                 android:layout_marginStart="8dp"
                 android:ems="10"
                 android:inputType="textPersonName"
-                app:layout_constraintBaseline_toBaselineOf="@+id/textView_name"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/guideline" />
-
-            <TextView
-                android:id="@+id/textView_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="24dp"
-                android:text="@string/AddWish_name"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@+id/imageView"
+                app:layout_constraintTop_toTopOf="@+id/imageView" />
 
             <android.support.constraint.Guideline
                 android:id="@+id/guideline"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                app:layout_constraintGuide_percent="0.3" />
+                app:layout_constraintGuide_percent="0.45" />
 
             <TextView
                 android:id="@+id/textView_size"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="8dp"
                 android:text="@string/AddWish_size"
-                app:layout_constraintStart_toStartOf="@+id/textView_name"
-                app:layout_constraintTop_toBottomOf="@+id/textView_name" />
+                app:layout_constraintStart_toStartOf="@+id/InputText_name"
+                app:layout_constraintTop_toBottomOf="@+id/InputText_name" />
 
             <TextView
                 android:id="@+id/InputText_size"
@@ -71,7 +63,7 @@
                 android:id="@+id/textView_link"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="8dp"
                 android:text="@string/AddWish_link"
                 app:layout_constraintStart_toStartOf="@+id/textView_size"
                 app:layout_constraintTop_toBottomOf="@+id/textView_size" />
@@ -80,7 +72,7 @@
                 android:id="@+id/textView_price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="8dp"
                 android:text="@string/AddWish_price"
                 app:layout_constraintStart_toStartOf="@+id/textView_link"
                 app:layout_constraintTop_toBottomOf="@+id/textView_link" />
@@ -89,7 +81,7 @@
                 android:id="@+id/textView_color"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="8dp"
                 android:text="@string/AddWish_color"
                 app:layout_constraintStart_toStartOf="@+id/textView_price"
                 app:layout_constraintTop_toBottomOf="@+id/textView_price" />
@@ -98,7 +90,7 @@
                 android:id="@+id/textView_shop"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="8dp"
                 android:text="@string/AddWish_shop"
                 app:layout_constraintStart_toStartOf="@+id/textView_color"
                 app:layout_constraintTop_toBottomOf="@+id/textView_color" />
@@ -108,7 +100,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="24dp"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="8dp"
                 android:text="@string/AddWish_note"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/textView_shop"
@@ -173,6 +165,16 @@
                 app:layout_constraintBaseline_toBaselineOf="@+id/textView_color"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/guideline" />
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="8dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                card_view:srcCompat="@drawable/gift_icon" />
 
         </android.support.constraint.ConstraintLayout>
 
