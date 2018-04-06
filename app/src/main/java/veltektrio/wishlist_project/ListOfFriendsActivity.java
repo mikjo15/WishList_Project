@@ -7,6 +7,9 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.ViewGroup;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.List;
@@ -21,17 +24,21 @@ public class ListOfFriendsActivity extends AppCompatActivity {
     public RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
-    private Wishlist mWishlist = new Wishlist("Mikkel");
+    private Wishlist mWishlist = new Wishlist("Mikke");
     private Wishlist cWishlist = new Wishlist("Cathrine");
     private Wishlist bWishlist = new Wishlist("Benjamin");
 
-    private List<Wishlist> ListOfLists = Arrays.asList(mWishlist, cWishlist, bWishlist);
+    private List<Wishlist> ListOfLists = Arrays.asList(bWishlist);
+
+    private DatabaseReference friendsDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_of_friends);
         ButterKnife.bind(this);
+
+        friendsDatabase = FirebaseDatabase.getInstance().getReference().child("Friends");
 
         mRecyclerView.setHasFixedSize(true);
 

@@ -1,12 +1,20 @@
 package veltektrio.wishlist_project;
 
 
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -19,6 +27,8 @@ public class AddWishActivity extends AppCompatActivity {
     private String color;
     private String shop;
     private String note;
+
+    private DatabaseReference mDatabase;
 
     @BindView(R.id.editText_name)
     public EditText et_name;
@@ -48,6 +58,8 @@ public class AddWishActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_wish);
         ButterKnife.bind(this);
 
+        mDatabase = FirebaseDatabase.getInstance().getReference().child("Mine");
+
         FloatingActionButton fab_add = findViewById(R.id.fab_add);
         fab_add.setImageResource(R.drawable.ic_done_black_24dp);
         fab_add.setOnClickListener(new View.OnClickListener() {
@@ -75,6 +87,19 @@ public class AddWishActivity extends AppCompatActivity {
                 Wish newWish = new Wish(name, size, link, price, color, shop, note);
 
                 MyWishListActivity.myWishlist.add_wish(newWish);
+
+                mDatabase.child(name).setValue(newWish).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+
+                        if (task.isSuccessful()) {
+                            Toast.makeText(AddWishActivity.this, "Wish added", Toast.LENGTH_LONG).show();
+                        } else {
+                            Toast.makeText(AddWishActivity.this, "Error", Toast.LENGTH_LONG).show();
+                        }
+
+                    }
+                });
 
                   finish();
             }

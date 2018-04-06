@@ -1,6 +1,9 @@
 package veltektrio.wishlist_project;
 
 import android.content.Context;
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -39,7 +42,11 @@ public class mFriends extends RecyclerView.Adapter<mFriends.ViewHolder> {
         holder.friend_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Bundle bundle = new Bundle();
+                bundle.putString("database", user_name);
+                Fragment fragment_recycle = new ItemListFragment();
+                fragment_recycle.setArguments(bundle);
+                ((ListOfFriendsActivity)context).getSupportFragmentManager().beginTransaction().add(R.id.MyWishList_ItemListFragment, fragment_recycle).commit();
             }
         });
     }

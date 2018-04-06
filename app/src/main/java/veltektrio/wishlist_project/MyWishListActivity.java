@@ -50,8 +50,15 @@ public class MyWishListActivity extends AppCompatActivity {
         });
 
         /* ----------------------- til recycleview -----------------------------------*/
+        // Har tilføjet en bundle der sørger for det er den rigtige gren af databasen der tilgås
+        // Virker ikke pt
+        Bundle bundle = new Bundle();
+        bundle.putString("database", "Mine");
         fragment_recycle = new ItemListFragment();
-        mfragmentManager.beginTransaction().add(R.id.MyWishList_ItemListFragment, fragment_recycle);
+        fragment_recycle.setArguments(bundle);
+        mfragmentManager.beginTransaction()
+                .add(R.id.MyWishList_ItemListFragment, fragment_recycle)
+                .commit();
     }
 
 }
