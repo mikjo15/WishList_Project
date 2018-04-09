@@ -1,10 +1,12 @@
 package veltektrio.wishlist_project;
 
+import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.view.ViewGroup;
 
 import com.google.firebase.database.DatabaseReference;
@@ -50,6 +52,14 @@ public class ListOfFriendsActivity extends AppCompatActivity {
 
         FloatingActionButton fab_friend = findViewById(R.id.fab_friend);
         fab_friend.setImageResource(R.drawable.ic_add_black_24dp);
+
+        fab_friend.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent_addfriend = new Intent(getApplicationContext(), AddFriendActivity.class);
+                startActivity(intent_addfriend);
+            }
+        });
     }
 
     //Tilføj onLongClick så vi kan slette friends lister

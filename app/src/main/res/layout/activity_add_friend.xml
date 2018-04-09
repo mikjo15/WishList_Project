@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="veltektrio.wishlist_project.AddFriendActivity"
+    tools:layout_editor_absoluteY="81dp">
+
+    <TextView
+        android:id="@+id/textView_friendID"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="24dp"
+        android:text="@string/AddFriend_id"
+        app:layout_constraintBottom_toTopOf="@+id/textView_friendsName"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="24dp"
+        android:layout_marginStart="16dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintBaseline_toBaselineOf="@+id/textView_friendID"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline3" />
+
+    <EditText
+        android:id="@+id/editText2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="24dp"
+        android:layout_marginStart="16dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintBaseline_toBaselineOf="@+id/textView_friendsName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline3" />
+
+    <TextView
+        android:id="@+id/textView_friendsName"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/AddFriend_name"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/textView_friendID"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.32999998" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="129dp" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_closeFriend"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginRight="16dp"
+        app:backgroundTint="@color/colorSecondary"
+        app:fabSize="normal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+</android.support.constraint.ConstraintLayout>
