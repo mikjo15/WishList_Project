@@ -28,13 +28,13 @@ import butterknife.ButterKnife;
 public class ItemListFragment extends Fragment {
     private CardView MyCardView;
 
-    @BindView(R.id.itemlist_recycler_view)
+    @BindView(R.id.itemlist_recycler_view) // Her bindes recyclerviewet der viser ønskerne
     public RecyclerView recyclerView;
 
     // private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
 
-    // Datareference bruges til at koble til db. Det er egentlig bare et link til db
+    // Datareference bruges til at koble til db. Det er egentlig bare et link til Firebase på nettet
     private DatabaseReference mDatabase;
     private String child;
 
@@ -44,6 +44,7 @@ public class ItemListFragment extends Fragment {
 
         // En streng hentes fra activity der starter fragmentet
         // Key er database og value er enten Mine eller Friends
+        // Det er meningen at dette skal afgøre om fragmentet skal tilgå databasen med egne elller venners ønsker
         Bundle bundle = getArguments();
 
         if(bundle != null) {
@@ -54,12 +55,12 @@ public class ItemListFragment extends Fragment {
                 mDatabase = FirebaseDatabase.getInstance().getReference().child("Friends").child(child);
             }
         } else { // For at undgå crash
-            mDatabase = FirebaseDatabase.getInstance().getReference().child("Friends");
+            mDatabase = FirebaseDatabase.getInstance().getReference().child("mikjo15");
         }
         mDatabase.keepSynced(true);
 
         // Denne liste skal eksistere, jeg er ikke sikker på hvorfor. Binder muligvis fragment og activity sammen
-        //MyWishListActivity.myWishlist = new Wishlist("Test wishlist");
+        MyWishListActivity.myWishlist = new Wishlist("Test wishlist");
 
         layoutManager = new LinearLayoutManager(getActivity());
     }
@@ -89,7 +90,7 @@ public class ItemListFragment extends Fragment {
                 (Wish.class, R.layout.item_list_recycleview, WishViewHolder.class, mDatabase) {
             @Override
             protected void populateViewHolder(WishViewHolder holder, Wish currentwish, int position) {
-                if(currentwish.getName() != "")
+                if(currentwish.getName() != "") // Alle if'sne kan sættes i en funktion
                     holder.input_name.setText(currentwish.getName());
                 else {
                     holder.input_name.setVisibility(View.GONE);

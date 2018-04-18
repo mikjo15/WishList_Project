@@ -22,10 +22,10 @@ public class MyWishListActivity extends AppCompatActivity {
     private FragmentManager mfragmentManager;
     private Fragment fragment_recycle;
 
-    @BindView(R.id.itemlist_recycler_view)
+    @BindView(R.id.itemlist_recycler_view) // Viewet i ItemListFragment
     public RecyclerView recyclerView;
-    private RecyclerView.Adapter adapter;
-    private RecyclerView.LayoutManager layoutManager;
+    private RecyclerView.Adapter adapter; // Kan denne ikke bare slettes?
+    private RecyclerView.LayoutManager layoutManager; // Og denne
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +51,6 @@ public class MyWishListActivity extends AppCompatActivity {
 
         /* ----------------------- til recycleview -----------------------------------*/
         // Har tilføjet en bundle der sørger for det er den rigtige gren af databasen der tilgås
-        // Virker ikke pt
         Bundle bundle = new Bundle();
         bundle.putString("database", "Mine");
         fragment_recycle = new ItemListFragment();

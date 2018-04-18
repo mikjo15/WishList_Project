@@ -58,7 +58,7 @@ public class AddWishActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_wish);
         ButterKnife.bind(this);
 
-        mDatabase = FirebaseDatabase.getInstance().getReference().child("Mine");
+        mDatabase = FirebaseDatabase.getInstance().getReference().child("mikjo15");
 
         FloatingActionButton fab_add = findViewById(R.id.fab_add);
         fab_add.setImageResource(R.drawable.ic_done_black_24dp);
