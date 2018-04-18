@@ -176,27 +176,31 @@
             app:layout_constraintTop_toTopOf="parent"
             card_view:srcCompat="@drawable/gift_icon" />
 
-        <android.support.constraint.Guideline
-            android:id="@+id/guideline9"
+        <ImageButton
+            android:id="@+id/imageButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.72" />
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="8dp"
+            android:background="@color/cardview_shadow_end_color"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView"
+            card_view:layout_constraintEnd_toEndOf="parent"
+            card_view:layout_constraintTop_toTopOf="parent"
+            card_view:srcCompat="@drawable/ic_delete_white_24dp" />
 
-        <Button
-            android:id="@+id/button3"
-            android:layout_width="73dp"
+        <ImageButton
+            android:id="@+id/imageButton2"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
-            android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
-            android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:background=""
+            android:background="@color/cardview_shadow_end_color"
             app:layout_constraintBottom_toBottomOf="@+id/imageView"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/guideline9"
-            card_view:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintEnd_toStartOf="@+id/imageButton"
+            app:layout_constraintTop_toTopOf="parent"
+            card_view:srcCompat="@drawable/ic_create_white_24dp" />
 
     </android.support.constraint.ConstraintLayout>
 
