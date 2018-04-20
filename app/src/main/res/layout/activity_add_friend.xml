@@ -14,7 +14,7 @@
         android:layout_marginBottom="24dp"
         android:layout_marginLeft="16dp"
         android:layout_marginStart="24dp"
-        android:text="@string/AddFriend_id"
+        android:text="@string/AddFriend_mail"
         app:layout_constraintBottom_toTopOf="@+id/textView_friendsName"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -60,7 +60,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_begin="129dp" />
+        app:layout_constraintGuide_percent="0.45833334" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab_closeFriend"

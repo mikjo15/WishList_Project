@@ -16,6 +16,15 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:layout_editor_absoluteX="118dp">
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:text="@string/signin_textv"
+            android:textAlignment="center"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+
         <EditText
             android:id="@+id/editTextEmail"
             android:layout_width="match_parent"
@@ -37,27 +46,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
-            android:text="Register user" />
+            android:text="@string/signin_btn" />
 
         <TextView
             android:id="@+id/textViewSignup"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_margin="15dp"
-            android:text="Not registered? Sign up here"
-            android:textAlignment="center"/>
+            android:text="@string/signin_textbtn"
+            android:textAlignment="center" />
 
     </LinearLayout>
-
-    <EditText
-        android:id="@+id/editTextLogin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Login"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        tools:layout_editor_absoluteY="71dp" />
 
 </android.support.constraint.ConstraintLayout>
