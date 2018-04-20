@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "91328101002",
+    "firebase_url": "https://wishlistproject-3f5db.firebaseio.com",
+    "project_id": "wishlistproject-3f5db",
+    "storage_bucket": "wishlistproject-3f5db.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:91328101002:android:ed1e373929ceb189",
+        "android_client_info": {
+          "package_name": "veltektrio.wishlist_project"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "91328101002-v5idfvm4k1plkc6k1cm7rpi5439ktgjb.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "veltektrio.wishlist_project",
+            "certificate_hash": "b99e2b575c193d042695ce41eda242a71cce21dd"
+          }
+        },
+        {
+          "client_id": "91328101002-gs8hmscp86cb851pbra6ari3vmd40p4h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD85GP6hRGZh0pj8QiXs_t2E-DitrbEbK0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "91328101002-gs8hmscp86cb851pbra6ari3vmd40p4h.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
