@@ -6,11 +6,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.lang.reflect.Array;
 import java.util.Arrays;
@@ -30,9 +34,9 @@ public class ListOfFriendsActivity extends AppCompatActivity {
     private Wishlist cWishlist = new Wishlist("Cathrine");
     private Wishlist bWishlist = new Wishlist("Benjamin");
 
-    private List<Wishlist> ListOfLists = Arrays.asList(bWishlist);
+    private List<Wishlist> ListOfLists = Arrays.asList();
 
-    private DatabaseReference friendsDatabase;
+    private DatabaseReference database_friends;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +44,26 @@ public class ListOfFriendsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_list_of_friends);
         ButterKnife.bind(this);
 
-        friendsDatabase = FirebaseDatabase.getInstance().getReference().child("Friends");
+        //Gets data from database                                                  My user ID                      List of friends
+        database_friends = FirebaseDatabase.getInstance().getReference().child("PBEQIVYpWkagi7ZZq5UdlHCnnxC3").child("friends");
+
+        ValueEventListener readFriendsListner = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                Log.i("VT OUTPUT:", "test");
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    String friend = snapshot.getValue().toString();
+                    Log.i("VT OUTPUT:", friend);
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Log.i("VT OUTPUT:", "FAIL");
+            }
+        };
+
+        database_friends.addValueEventListener(readFriendsListner);
 
         mRecyclerView.setHasFixedSize(true);
 
