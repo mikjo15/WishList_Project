@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -26,11 +27,8 @@ public class ListOfFriendsActivity extends AppCompatActivity {
     public RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
-    private Wishlist mWishlist = new Wishlist("Mikke");
-    private Wishlist cWishlist = new Wishlist("Cathrine");
-    private Wishlist bWishlist = new Wishlist("Benjamin");
 
-    private List<Wishlist> ListOfLists = Arrays.asList(bWishlist);
+    private List<Friend> listOfFriends = Arrays.asList();
 
     private DatabaseReference friendsDatabase;
 
@@ -40,14 +38,16 @@ public class ListOfFriendsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_list_of_friends);
         ButterKnife.bind(this);
 
-        friendsDatabase = FirebaseDatabase.getInstance().getReference().child("Friends");
+        friendsDatabase = FirebaseDatabase.getInstance().getReference()
+                .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                .child("friends");
 
-        mRecyclerView.setHasFixedSize(true);
+        mRecyclerView.setHasFixedSize(false);
 
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
 
-        mAdapter = new mFriends(ListOfLists, this);
+        mAdapter = new mFriends(listOfFriends, this);
         mRecyclerView.setAdapter(mAdapter);
 
         FloatingActionButton fab_friend = findViewById(R.id.fab_friend);
