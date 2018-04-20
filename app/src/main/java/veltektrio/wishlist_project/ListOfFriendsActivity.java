@@ -9,7 +9,11 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -37,6 +41,11 @@ public class ListOfFriendsActivity extends AppCompatActivity {
     private List<Wishlist> ListOfLists = Arrays.asList();
 
     private DatabaseReference database_friends;
+    // Datareference bruges til at koble til db. Det er egentlig bare et link til Firebase på nettet
+    private DatabaseReference mDatabase;
+
+    // Vi får fat i den bruger der er logget ind
+    FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +53,7 @@ public class ListOfFriendsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_list_of_friends);
         ButterKnife.bind(this);
 
+        /*Old by Benjamin & Cathrine
         //Gets data from database                                                  My user ID                      List of friends
         database_friends = FirebaseDatabase.getInstance().getReference().child("PBEQIVYpWkagi7ZZq5UdlHCnnxC3").child("friends");
 
@@ -63,7 +73,19 @@ public class ListOfFriendsActivity extends AppCompatActivity {
             }
         };
 
-        database_friends.addValueEventListener(readFriendsListner);
+        database_friends.addValueEventListener(readFriendsListner);*/
+
+        // Vi laver en variabel uid
+        String uid;
+        // Hvis der er en user logget ind, sættes uid til brugerens uid og vi går ind i dennes database
+        if (firebaseUser != null) {
+            uid = firebaseUser.getUid();
+            mDatabase = FirebaseDatabase.getInstance().getReference().child(uid).child("wishes");
+            // det sidste child bruges her til at tilgå ønskelisten
+            // Hvis fragmentet skal bruges til friends, skal vi måske lave en ny databasereference, der tilgår friends
+        }
+
+        mDatabase.keepSynced(true);
 
         mRecyclerView.setHasFixedSize(true);
 
@@ -85,6 +107,17 @@ public class ListOfFriendsActivity extends AppCompatActivity {
         });
     }
 
-    //Tilføj onLongClick så vi kan slette friends lister
+    // Alt det der står i onStart skal muligvis rykkes, så det ikke gælder for alle steder hvor
+    // dette fragment bruges.
+    // FirebaseRecyclerAdapter er fundet i en tutorial. Bruges til at sætte views til diverse værdier
+    @Override
+    public void onStart() {
+        super.onStart();
+        FirebaseRecyclerAdapter<Wish, ItemListFragment.WishViewHolder> firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<Wish, ItemListFragment.WishViewHolder>
+                (Wish.class, R.layout.item_list_recycleview, ItemListFragment.WishViewHolder.class, mDatabase) {
+
+        }
+
+    }
 
 }
