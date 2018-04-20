@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.ContextThemeWrapper;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 
 /* Bruges som viewholder til friends list. (knapperne hvorpå der står navne på venner)
@@ -12,7 +13,7 @@ public class FriendViewHolder extends RecyclerView.ViewHolder  { //implements Vi
 
     public Button friendview;
 
-    public FriendViewHolder(View v) {
+    public FriendViewHolder(ViewGroup v) {
         super(v);
 
         friendview = v.findViewById(R.id.friends_btn);
