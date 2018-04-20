@@ -1,6 +1,7 @@
 package veltektrio.wishlist_project;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -40,7 +41,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_register);
         ButterKnife.bind(this);
 
         firebaseAuth = FirebaseAuth.getInstance();
@@ -74,6 +75,8 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()) {
                             Toast.makeText(RegisterActivity.this, "Register successful", Toast.LENGTH_SHORT).show();
+                            finish();
+                            startActivity(new Intent(getApplicationContext(), MenuScreen.class));
                         } else {
                             Toast.makeText(RegisterActivity.this, "Register failed", Toast.LENGTH_SHORT).show();
                         }
@@ -89,7 +92,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         }
 
         if(view == textViewSignin) {
-
+            startActivity(new Intent(this, LoginActivity.class));
         }
     }
 }
