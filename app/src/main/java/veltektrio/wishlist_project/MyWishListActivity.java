@@ -18,14 +18,11 @@ import butterknife.ButterKnife;
 public class MyWishListActivity extends AppCompatActivity {
 
     public static Wishlist myWishlist;
-    private Fragment fragment_popup;
     private FragmentManager mfragmentManager;
     private Fragment fragment_recycle;
 
     @BindView(R.id.itemlist_recycler_view) // Viewet i ItemListFragment
     public RecyclerView recyclerView;
-    private RecyclerView.Adapter adapter; // Kan denne ikke bare slettes?
-    private RecyclerView.LayoutManager layoutManager; // Og denne
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,10 +48,7 @@ public class MyWishListActivity extends AppCompatActivity {
 
         /* ----------------------- til recycleview -----------------------------------*/
         // Har tilføjet en bundle der sørger for det er den rigtige gren af databasen der tilgås
-        Bundle bundle = new Bundle();
-        bundle.putString("database", "Mine");
         fragment_recycle = new ItemListFragment();
-        fragment_recycle.setArguments(bundle);
         mfragmentManager.beginTransaction()
                 .add(R.id.MyWishList_ItemListFragment, fragment_recycle)
                 .commit();

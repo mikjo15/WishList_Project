@@ -15,6 +15,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -26,7 +28,6 @@ import butterknife.ButterKnife;
 
 
 public class ItemListFragment extends Fragment {
-    private CardView MyCardView;
 
     @BindView(R.id.itemlist_recycler_view) // Her bindes recyclerviewet der viser ønskerne
     public RecyclerView recyclerView;
@@ -36,27 +37,24 @@ public class ItemListFragment extends Fragment {
 
     // Datareference bruges til at koble til db. Det er egentlig bare et link til Firebase på nettet
     private DatabaseReference mDatabase;
-    private String child;
+
+    // Vi får fat i den bruger der er logget ind
+    FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // En streng hentes fra activity der starter fragmentet
-        // Key er database og value er enten Mine eller Friends
-        // Det er meningen at dette skal afgøre om fragmentet skal tilgå databasen med egne elller venners ønsker
-        Bundle bundle = getArguments();
-
-        if(bundle != null) {
-            child = bundle.getString("database");
-            if (child == "Mine") {
-                mDatabase = FirebaseDatabase.getInstance().getReference().child(child);
-            } else {
-                mDatabase = FirebaseDatabase.getInstance().getReference().child("Friends").child(child);
-            }
-        } else { // For at undgå crash
-            mDatabase = FirebaseDatabase.getInstance().getReference().child("mikjo15");
+        // Vi laver en variabel uid
+        String uid;
+        // Hvis der er en user logget ind, sættes uid til brugerens uid og vi går ind i dennes database
+        if (firebaseUser != null) {
+            uid = firebaseUser.getUid();
+            mDatabase = FirebaseDatabase.getInstance().getReference().child(uid).child("wishes");
+            // det sidste child bruges her til at tilgå ønskelisten
+            // Hvis fragmentet skal bruges til friends, skal vi måske lave en ny databasereference, der tilgår friends
         }
+
         mDatabase.keepSynced(true);
 
         // Denne liste skal eksistere, jeg er ikke sikker på hvorfor. Binder muligvis fragment og activity sammen
@@ -68,14 +66,11 @@ public class ItemListFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
-        //MyCardView = container.findViewById(R.id.card_view);
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_item_list, container, false);
         ButterKnife.bind(this,v);
 
         recyclerView.setLayoutManager(layoutManager);
-        // recyclerView.setAdapter(adapter);
         return v;
     }
 
@@ -88,6 +83,7 @@ public class ItemListFragment extends Fragment {
         super.onStart();
         FirebaseRecyclerAdapter<Wish, WishViewHolder> firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<Wish, WishViewHolder>
                 (Wish.class, R.layout.item_list_recycleview, WishViewHolder.class, mDatabase) {
+
             @Override
             protected void populateViewHolder(WishViewHolder holder, Wish currentwish, int position) {
                 if(currentwish.getName() != "") // Alle if'sne kan sættes i en funktion
