@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "91328101002-ak8ch8a2pbf2fjnc96237491r53h7c7k.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "veltektrio.wishlist_project",
+            "certificate_hash": "674f9cee6e61561602653f668c58542f422be8f9"
+          }
+        },
+        {
           "client_id": "91328101002-v5idfvm4k1plkc6k1cm7rpi5439ktgjb.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

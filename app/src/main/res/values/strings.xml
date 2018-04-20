@@ -18,10 +18,10 @@
     <string name="AddWish_shop">Shop:</string>
     <string name="AddWish_note">Note:</string>
     <string name="AddFriend_name">Friend\'s name:</string>
-    <string name="AddFriend_id">Friend\'s ID:</string>
+    <string name="AddFriend_mail">Friend\'s email address:</string>
     <string name="title_activity_login">Sign in</string>
 
-    <!-- Strings related to login -->
+    <!-- Strings related to login and registration -->
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password (optional)</string>
     <string name="action_sign_in">Sign in or register</string>
@@ -33,4 +33,10 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
+    <string name="signin_btn">Sign in</string>
+    <string name="register_btn">Register user</string>
+    <string name="register_textv">Register user</string>
+    <string name="signin_textv">Sign in</string>
+    <string name="register_textbtn">Already registered? Sign in here</string>
+    <string name="signin_textbtn">Not registered? Sign up here</string>
 </resources>
