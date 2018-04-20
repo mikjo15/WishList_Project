@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <Button
     android:id="@+id/friends_btn"
     android:layout_width="match_parent"
@@ -7,5 +8,6 @@
     android:textColor="@color/colorText"
     android:layout_margin="10dp"
     android:elevation="@dimen/app_bar_height"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    >
 </Button>

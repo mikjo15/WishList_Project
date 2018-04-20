@@ -6,19 +6,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
-import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import java.lang.reflect.Array;
 import java.util.Arrays;
@@ -34,18 +27,10 @@ public class ListOfFriendsActivity extends AppCompatActivity {
     public RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
-    private Wishlist mWishlist = new Wishlist("Mikke");
-    private Wishlist cWishlist = new Wishlist("Cathrine");
-    private Wishlist bWishlist = new Wishlist("Benjamin");
 
-    private List<Wishlist> ListOfLists = Arrays.asList();
+    private List<Friend> listOfFriends = Arrays.asList();
 
-    private DatabaseReference database_friends;
-    // Datareference bruges til at koble til db. Det er egentlig bare et link til Firebase på nettet
-    private DatabaseReference mDatabase;
-
-    // Vi får fat i den bruger der er logget ind
-    FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+    private DatabaseReference friendsDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,13 +71,16 @@ public class ListOfFriendsActivity extends AppCompatActivity {
         }
 
         mDatabase.keepSynced(true);
+        friendsDatabase = FirebaseDatabase.getInstance().getReference()
+                .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                .child("friends");
 
-        mRecyclerView.setHasFixedSize(true);
+        mRecyclerView.setHasFixedSize(false);
 
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
 
-        mAdapter = new mFriends(ListOfLists, this);
+        mAdapter = new mFriends(listOfFriends, this);
         mRecyclerView.setAdapter(mAdapter);
 
         FloatingActionButton fab_friend = findViewById(R.id.fab_friend);
@@ -107,17 +95,6 @@ public class ListOfFriendsActivity extends AppCompatActivity {
         });
     }
 
-    // Alt det der står i onStart skal muligvis rykkes, så det ikke gælder for alle steder hvor
-    // dette fragment bruges.
-    // FirebaseRecyclerAdapter er fundet i en tutorial. Bruges til at sætte views til diverse værdier
-    @Override
-    public void onStart() {
-        super.onStart();
-        FirebaseRecyclerAdapter<Wish, ItemListFragment.WishViewHolder> firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<Wish, ItemListFragment.WishViewHolder>
-                (Wish.class, R.layout.item_list_recycleview, ItemListFragment.WishViewHolder.class, mDatabase) {
-
-        }
-
-    }
+    //Tilføj onLongClick så vi kan slette friends lister
 
 }
