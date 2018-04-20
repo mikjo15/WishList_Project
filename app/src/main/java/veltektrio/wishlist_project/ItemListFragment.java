@@ -9,9 +9,12 @@ import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
@@ -158,6 +161,8 @@ public class ItemListFragment extends Fragment {
         public TextView text_color;
         public TextView text_shop;
 
+        public ImageButton deleteButton;
+
         public WishViewHolder(View v) {
             super(v);
             input_name = v.findViewById(R.id.InputText_name);
@@ -175,6 +180,16 @@ public class ItemListFragment extends Fragment {
             text_note = v.findViewById(R.id.textView_note);
             text_color = v.findViewById(R.id.textView_color);
             text_shop = v.findViewById(R.id.textView_shop);
+
+            deleteButton = v.findViewById(R.id.deleteWishButton);
+
+            deleteButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Log.i("clicked", "Deleted");
+                    
+                }
+            });
         }
     }
 }
