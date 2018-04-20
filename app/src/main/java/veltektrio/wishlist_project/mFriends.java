@@ -10,6 +10,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 import java.util.List;
 
 /**
@@ -18,11 +20,11 @@ import java.util.List;
 
 public class mFriends extends RecyclerView.Adapter<mFriends.ViewHolder> {
 
-    private List<Wishlist> wishList;
+    private List<Friend> listOfFriends;
     private Context context;
 
-    public mFriends(List<Wishlist> wishList, Context context) {
-        this.wishList = wishList;
+    public mFriends(List<Friend> listOfFriends, Context context) {
+        this.listOfFriends = listOfFriends;
         this.context = context;
     }
 
@@ -35,33 +37,32 @@ public class mFriends extends RecyclerView.Adapter<mFriends.ViewHolder> {
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        Wishlist currentList = wishList.get(position);
-        final String user_name = currentList.getUser_name();
+        Friend currentFriend = listOfFriends.get(position);
 
-        holder.friend_btn.setText(user_name);
-        holder.friend_btn.setOnClickListener(new View.OnClickListener() {
+        holder.friend_btn.setText(currentFriend.username);
+      /*  holder.friend_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Bundle bundle = new Bundle();
-                bundle.putString("database", user_name);
+                bundle.putString("database", FirebaseAuth.getInstance().getCurrentUser());
                 Fragment fragment_recycle = new ItemListFragment();
                 fragment_recycle.setArguments(bundle);
                 ((ListOfFriendsActivity)context).getSupportFragmentManager().beginTransaction().add(R.id.MyWishList_ItemListFragment, fragment_recycle).commit();
             }
-        });
+        });*/
     }
 
     @Override
-    public int getItemCount() { return wishList.size(); }
+    public int getItemCount() { return listOfFriends.size(); }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         public Button friend_btn;
 
-        public ViewHolder(View itemView) {
-            super(itemView);
+        public ViewHolder(View view) {
+            super(view);
 
-            friend_btn = itemView.findViewById(R.id.friends_btn);
+            friend_btn = view.findViewById(R.id.friends_btn);
         }
     }
 }
