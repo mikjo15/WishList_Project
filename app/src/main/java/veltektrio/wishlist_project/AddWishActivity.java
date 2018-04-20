@@ -12,6 +12,8 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -51,6 +53,8 @@ public class AddWishActivity extends AppCompatActivity {
     @BindView(R.id.editText_note)
     public EditText et_note;
 
+    // Vi får fat i den bruger der er logget ind
+    FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -58,7 +62,16 @@ public class AddWishActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_wish);
         ButterKnife.bind(this);
 
-        mDatabase = FirebaseDatabase.getInstance().getReference().child("mikjo15");
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+        // Vi laver en variabel uid
+        String uid;
+        // Hvis der er en user logget ind, sættes uid til brugerens uid og vi går ind i dennes database
+        if (firebaseUser != null) {
+            uid = firebaseUser.getUid();
+            mDatabase = FirebaseDatabase.getInstance().getReference().child(uid).child("wishes");
+            // det sidste child bruges her til at tilgå ønskelisten
+            // Hvis fragmentet skal bruges til friends, skal vi måske lave en ny databasereference, der tilgår friends
+        }
 
         FloatingActionButton fab_add = findViewById(R.id.fab_add);
         fab_add.setImageResource(R.drawable.ic_done_black_24dp);
