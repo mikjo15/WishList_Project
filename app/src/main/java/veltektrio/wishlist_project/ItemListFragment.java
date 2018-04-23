@@ -84,11 +84,12 @@ public class ItemListFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        FirebaseRecyclerAdapter<Wish, WishViewHolder> firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<Wish, WishViewHolder>
+        final FirebaseRecyclerAdapter<Wish, WishViewHolder> firebaseRecyclerAdapter;
+        firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<Wish, WishViewHolder>
                 (Wish.class, R.layout.item_list_recycleview, WishViewHolder.class, mDatabase) {
 
             @Override
-            protected void populateViewHolder(WishViewHolder holder, Wish currentwish, int position) {
+            protected void populateViewHolder(WishViewHolder holder, Wish currentwish, final int position) {
                 if(currentwish.getName() != "") // Alle if'sne kan sættes i en funktion
                     holder.input_name.setText(currentwish.getName());
                 else {
@@ -137,7 +138,18 @@ public class ItemListFragment extends Fragment {
                     holder.input_shop.setVisibility(View.GONE);
                     holder.text_shop.setVisibility(View.GONE);
                 }
+
+                // Her sættes en onClickListener til deleteknappen
+                // Listeneren laves her inde, da vi kan bruge position til at tilgå elemtet i databasen
+                holder.deleteButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Log.i("clicked", "Deleted");
+                        getRef(position).removeValue();
+                    }
+                });
             }
+
         };
         recyclerView.setAdapter(firebaseRecyclerAdapter);
     }
@@ -182,14 +194,6 @@ public class ItemListFragment extends Fragment {
             text_shop = v.findViewById(R.id.textView_shop);
 
             deleteButton = v.findViewById(R.id.deleteWishButton);
-
-            deleteButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Log.i("clicked", "Deleted");
-                    
-                }
-            });
         }
     }
 }
