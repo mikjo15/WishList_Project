@@ -21,7 +21,7 @@
 
     <EditText
         android:id="@+id/editText"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="24dp"
         android:layout_marginStart="16dp"
@@ -33,7 +33,7 @@
 
     <EditText
         android:id="@+id/editText2"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="24dp"
         android:layout_marginStart="16dp"
@@ -57,10 +57,10 @@
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline3"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.45833334" />
+        app:layout_constraintGuide_percent="0.43" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab_closeFriend"
