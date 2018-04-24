@@ -11,8 +11,6 @@ import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 
-// Husk at koble onClick sammen med activities
-
 public class MenuScreen extends AppCompatActivity {
 
     @Override
