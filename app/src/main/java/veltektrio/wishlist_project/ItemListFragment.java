@@ -148,6 +148,15 @@ public class ItemListFragment extends Fragment {
                         getRef(position).removeValue();
                     }
                 });
+
+                holder.changeButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        // To muligheder
+                        // addValueEventListener
+                        // åbn add wish activity og sæt oplysningerne til de eksisterende
+                    }
+                });
             }
 
         };
@@ -174,6 +183,7 @@ public class ItemListFragment extends Fragment {
         public TextView text_shop;
 
         public ImageButton deleteButton;
+        public ImageButton changeButton;
 
         public WishViewHolder(View v) {
             super(v);
@@ -194,6 +204,7 @@ public class ItemListFragment extends Fragment {
             text_shop = v.findViewById(R.id.textView_shop);
 
             deleteButton = v.findViewById(R.id.deleteWishButton);
+            changeButton = v.findViewById(R.id.changeWishButton);
         }
     }
 }

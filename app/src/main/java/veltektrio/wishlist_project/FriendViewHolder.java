@@ -13,7 +13,7 @@ public class FriendViewHolder extends RecyclerView.ViewHolder  { //implements Vi
 
     public Button friendview;
 
-    public FriendViewHolder(ViewGroup v) {
+    public FriendViewHolder(View v) {
         super(v);
 
         friendview = v.findViewById(R.id.friends_btn);

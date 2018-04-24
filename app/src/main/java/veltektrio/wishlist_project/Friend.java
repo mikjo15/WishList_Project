@@ -7,4 +7,10 @@ package veltektrio.wishlist_project;
 public class Friend {
     public String ID;
     public String username;
+
+
+    public Friend(String ID, String username) {
+        this.ID = ID;
+        this.username = username;
+    }
 }
