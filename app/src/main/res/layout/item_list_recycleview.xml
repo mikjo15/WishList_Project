@@ -177,7 +177,7 @@
             card_view:srcCompat="@drawable/gift_icon" />
 
         <ImageButton
-            android:id="@+id/imageButton"
+            android:id="@+id/deleteWishButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
@@ -190,7 +190,7 @@
             card_view:srcCompat="@drawable/ic_delete_white_24dp" />
 
         <ImageButton
-            android:id="@+id/imageButton2"
+            android:id="@+id/changeWishButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
@@ -198,7 +198,7 @@
             android:layout_marginTop="8dp"
             android:background="@color/cardview_shadow_end_color"
             app:layout_constraintBottom_toBottomOf="@+id/imageView"
-            app:layout_constraintEnd_toStartOf="@+id/imageButton"
+            app:layout_constraintEnd_toStartOf="@+id/deleteWishButton"
             app:layout_constraintTop_toTopOf="parent"
             card_view:srcCompat="@drawable/ic_create_white_24dp" />
 

@@ -9,9 +9,12 @@ import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
@@ -81,11 +84,12 @@ public class ItemListFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        FirebaseRecyclerAdapter<Wish, WishViewHolder> firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<Wish, WishViewHolder>
+        final FirebaseRecyclerAdapter<Wish, WishViewHolder> firebaseRecyclerAdapter;
+        firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<Wish, WishViewHolder>
                 (Wish.class, R.layout.item_list_recycleview, WishViewHolder.class, mDatabase) {
 
             @Override
-            protected void populateViewHolder(WishViewHolder holder, Wish currentwish, int position) {
+            protected void populateViewHolder(WishViewHolder holder, Wish currentwish, final int position) {
                 if(currentwish.getName() != "") // Alle if'sne kan sættes i en funktion
                     holder.input_name.setText(currentwish.getName());
                 else {
@@ -134,7 +138,18 @@ public class ItemListFragment extends Fragment {
                     holder.input_shop.setVisibility(View.GONE);
                     holder.text_shop.setVisibility(View.GONE);
                 }
+
+                // Her sættes en onClickListener til deleteknappen
+                // Listeneren laves her inde, da vi kan bruge position til at tilgå elemtet i databasen
+                holder.deleteButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Log.i("clicked", "Deleted");
+                        getRef(position).removeValue();
+                    }
+                });
             }
+
         };
         recyclerView.setAdapter(firebaseRecyclerAdapter);
     }
@@ -158,6 +173,8 @@ public class ItemListFragment extends Fragment {
         public TextView text_color;
         public TextView text_shop;
 
+        public ImageButton deleteButton;
+
         public WishViewHolder(View v) {
             super(v);
             input_name = v.findViewById(R.id.InputText_name);
@@ -175,6 +192,8 @@ public class ItemListFragment extends Fragment {
             text_note = v.findViewById(R.id.textView_note);
             text_color = v.findViewById(R.id.textView_color);
             text_shop = v.findViewById(R.id.textView_shop);
+
+            deleteButton = v.findViewById(R.id.deleteWishButton);
         }
     }
 }
