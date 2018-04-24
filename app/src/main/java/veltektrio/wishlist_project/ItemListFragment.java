@@ -1,6 +1,7 @@
 package veltektrio.wishlist_project;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -148,6 +149,17 @@ public class ItemListFragment extends Fragment {
                         getRef(position).removeValue();
                     }
                 });
+
+                holder.editButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Log.i("clicked", "Edited wish");
+                        String refToWish = getRef(position).toString();
+                        Intent intent = new Intent(getContext(), AddWishActivity.class);
+                        intent.putExtra("refToWish", refToWish);
+                        startActivity(intent);
+                    }
+                });
             }
 
         };
@@ -174,6 +186,7 @@ public class ItemListFragment extends Fragment {
         public TextView text_shop;
 
         public ImageButton deleteButton;
+        public ImageButton editButton;
 
         public WishViewHolder(View v) {
             super(v);
@@ -194,6 +207,7 @@ public class ItemListFragment extends Fragment {
             text_shop = v.findViewById(R.id.textView_shop);
 
             deleteButton = v.findViewById(R.id.deleteWishButton);
+            editButton = v.findViewById(R.id.editWishButton);
         }
     }
 }
