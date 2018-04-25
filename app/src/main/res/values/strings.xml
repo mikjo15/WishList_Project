@@ -18,7 +18,7 @@
     <string name="AddWish_shop">Shop:</string>
     <string name="AddWish_note">Note:</string>
     <string name="AddFriend_name">Friend\'s name:</string>
-    <string name="AddFriend_mail">Friend\'s email address:</string>
+    <string name="AddFriend_UID">Friend\'s user ID:</string>
     <string name="title_activity_login">Sign in</string>
 
     <!-- Strings related to login and registration -->

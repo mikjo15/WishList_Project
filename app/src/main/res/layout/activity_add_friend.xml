@@ -14,7 +14,7 @@
         android:layout_marginBottom="24dp"
         android:layout_marginLeft="16dp"
         android:layout_marginStart="24dp"
-        android:text="@string/AddFriend_mail"
+        android:text="@string/AddFriend_UID"
         app:layout_constraintBottom_toTopOf="@+id/textView_friendsName"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
