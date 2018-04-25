@@ -7,7 +7,7 @@ package veltektrio.wishlist_project;
 public class Friend {
 
     public Friend(){}
-    public Friend(String UID, String UN){ username=UN; id=UID;}
+    public Friend(String UN){ username=UN;}
 
     public String getid() {
         return id;

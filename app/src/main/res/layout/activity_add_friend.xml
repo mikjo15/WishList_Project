@@ -20,7 +20,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/addFriend_UID"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="24dp"
@@ -32,7 +32,7 @@
         app:layout_constraintStart_toStartOf="@+id/guideline3" />
 
     <EditText
-        android:id="@+id/editText2"
+        android:id="@+id/addFriend_UserName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="24dp"
