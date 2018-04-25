@@ -16,11 +16,17 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class RegisterActivity extends AppCompatActivity implements View.OnClickListener {
+
+    DatabaseReference mDatabase;
+    String user_uid;
 
     @BindView(R.id.buttonRegister)
     Button buttonRegister;
@@ -45,6 +51,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         ButterKnife.bind(this);
 
         firebaseAuth = FirebaseAuth.getInstance();
+        mDatabase = FirebaseDatabase.getInstance().getReference();
 
         progressDialog = new ProgressDialog(this);
 
@@ -74,8 +81,24 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()) {
-                            Toast.makeText(RegisterActivity.this, "Register successful", Toast.LENGTH_SHORT).show();
                             finish();
+
+                            //adds the user to the database
+                            FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+                            user_uid = firebaseUser.getUid();
+                            mDatabase.child(user_uid).child("name").setValue("new user").addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+
+                                    if (task.isSuccessful()) {
+                                        Toast.makeText(RegisterActivity.this, "Register successful", Toast.LENGTH_SHORT).show();
+                                    } else {
+                                        Toast.makeText(RegisterActivity.this, "Error with the database", Toast.LENGTH_LONG).show();
+                                    }
+
+                                }
+                            });
+
                             startActivity(new Intent(getApplicationContext(), MenuScreen.class));
                         } else {
                             Toast.makeText(RegisterActivity.this, "Register failed", Toast.LENGTH_SHORT).show();
