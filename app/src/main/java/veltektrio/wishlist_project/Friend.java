@@ -5,6 +5,25 @@ package veltektrio.wishlist_project;
 //Disse gemmes i denne classe
 
 public class Friend {
-    public String ID;
+
+    public Friend(){}
+
+    public String getid() {
+        return id;
+    }
+
+    public void setid(String id) {this.id = id;}
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
     public String username;
+    public String id;
+
+
 }

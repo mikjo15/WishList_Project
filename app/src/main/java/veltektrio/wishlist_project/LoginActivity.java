@@ -45,6 +45,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         ButterKnife.bind(this);
 
         firebaseAuth = FirebaseAuth.getInstance();
+        if(firebaseAuth.getCurrentUser() != null)
+            startActivity(new Intent(this, MenuScreen.class));
 
         progressDialog = new ProgressDialog(this);
 

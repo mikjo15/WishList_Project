@@ -1,11 +1,11 @@
 package veltektrio.wishlist_project;
 
 import android.content.Intent;
-import android.support.design.widget.FloatingActionButton;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
@@ -13,98 +13,62 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class ListOfFriendsActivity extends AppCompatActivity {
-
-    @BindView(R.id.friends_RecyclerView)
-    public RecyclerView mRecyclerView;
-    private RecyclerView.Adapter mAdapter;
-    private RecyclerView.LayoutManager mLayoutManager;
+    private DatabaseReference databaseToFriends;
+    private FirebaseRecyclerAdapter adapterToFriendBtn;
 
 
-    private FirebaseRecyclerAdapter mFirebaseAdapter;
-    private DatabaseReference mDatabaseReference;
+    @BindView(R.id.listOfFriends_RecyclerView)
+    RecyclerView listOfFriends_RecyclerView;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_of_friends);
         ButterKnife.bind(this);
 
-        mDatabaseReference = FirebaseDatabase.getInstance().getReference()
-                .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                .child("friends");
+        databaseToFriends = FirebaseDatabase.getInstance().getReference().child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("friends");
         setUpFirebaseAdapter();
-
-        mLayoutManager = new LinearLayoutManager(this);
-        mRecyclerView.setLayoutManager(mLayoutManager);
-
-
-        //For the FAB button
-        FloatingActionButton fab_friend = findViewById(R.id.fab_friend);
-        fab_friend.setImageResource(R.drawable.ic_add_black_24dp);
-
-        fab_friend.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent_addfriend = new Intent(getApplicationContext(), AddFriendActivity.class);
-                startActivity(intent_addfriend);
-            }
-        });
     }
 
-    private void setUpFirebaseAdapter(){
-        mFirebaseAdapter = new FirebaseRecyclerAdapter<Friend, FriendViewHolder>(Friend.class, R.layout.friends_lists_btn, FriendViewHolder.class, mDatabaseReference) {
+    public void setUpFirebaseAdapter(){
+        Log.i("TEST!!! ", "inside");
+        adapterToFriendBtn = new FirebaseRecyclerAdapter<Friend, FriendFirebaseViewHolder>
+                (Friend.class, R.layout.friends_lists_btn, FriendFirebaseViewHolder.class,
+                        databaseToFriends) {
             @Override
-            protected void populateViewHolder(FriendViewHolder viewHolder, Friend model, int position) {
-                viewHolder.bindFriendsButton(model);
+            protected void populateViewHolder(FriendFirebaseViewHolder viewHolder, Friend model, int position) {
+                viewHolder.bindFriendView(model);
 
+                /*viewHolder.friendBtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Log.i("clicked", "Friend");
+                        String refToWish = getRef(position).toString();
+                        Intent intent = new Intent(getContext(), AddWishActivity.class);
+                        intent.putExtra("refToWish", refToWish);
+                        startActivity(intent);
+                    }
+                });*/
             }
         };
 
-        mRecyclerView.setHasFixedSize(true);
-        mRecyclerView.setAdapter(mFirebaseAdapter);
+        listOfFriends_RecyclerView.setHasFixedSize(true);
+        listOfFriends_RecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        listOfFriends_RecyclerView.setAdapter(adapterToFriendBtn);
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        mFirebaseAdapter.cleanup();
+        adapterToFriendBtn.cleanup();
     }
 
-    //Tilføj onLongClick så vi kan slette friends lister
-    /*@Override
-    public void onStart() {
-        super.onStart();
 
-        friendsDatabase = FirebaseDatabase.getInstance().getReference()
-                .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                .child("friends");
-        ValueEventListener readFriendsListner = new ValueEventListener() {
-            Friend friend = new Friend();
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    friend.ID = snapshot.getKey().toString();
-                    friend.username = snapshot.child("username").getValue().toString();
-                    listOfFriends.add(friend);
-                }
-            }
 
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                Log.i("VT OUTPUT:", "FAIL");
-            }
-        };
-
-        friendsDatabase.addValueEventListener(readFriendsListner);
-
-        mAdapter = new mFriends(listOfFriends, this);
-        mRecyclerView.setAdapter(mAdapter);
-    }*/
 }
+
+

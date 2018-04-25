@@ -28,7 +28,7 @@ public class Wish {
     public String getNote(){return note;}
     public void setNote(String n) {note = n;}
     public String getColor(){return color;}
-    public void setCOlor(String n) {color = n;}
+    public void setColor(String n) {color = n;}
     public String getShop(){return shop;}
     public void setShop(String n) {shop = n;}
 
