@@ -2,6 +2,7 @@ package veltektrio.wishlist_project;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -29,6 +30,18 @@ public class ListOfFriendsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_of_friends);
         ButterKnife.bind(this);
+
+        //Setup FAB button & OnClickListener for it
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab_friend);
+        fab.setImageResource(R.drawable.ic_add_black_24dp);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                System.out.println("fab click to add friend");
+                Intent intent_add = new Intent(getApplicationContext(), AddFriendActivity.class);
+                startActivity(intent_add);
+            }
+        });
 
         databaseToFriends = FirebaseDatabase.getInstance().getReference().child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("friends");
         setUpFirebaseAdapter();
