@@ -43,11 +43,8 @@ public class ItemListFragment extends Fragment {
 
         activity_from_intent = getActivity().getIntent().getStringExtra("activity").trim();
 
-        if(activity_from_intent.equals("friend"))
-            uid = getActivity().getIntent().getStringExtra("refToUserID");
-        else
-            uid = getActivity().getIntent().getStringExtra("refToUserID");
-
+        //uid = getActivity().getIntent().getStringExtra("refToUserID");
+        uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
         mDatabase = FirebaseDatabase.getInstance().getReference().child(uid).child("wishes");
         mDatabase.keepSynced(true);
