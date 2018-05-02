@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Ønskeseddel</string>
+    <string name="action_settings">Settings</string>
+
+    <!-- Strings related to login and registration -->
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password (optional)</string>
+    <string name="action_sign_in">Log ind eller registre</string>
+    <string name="action_sign_in_short">Log ind</string>
+    <string name="error_invalid_email">Emailadressen er ugyldig</string>
+    <string name="error_invalid_password">Passwordet er for kort</string>
+    <string name="error_incorrect_password">Forkert password</string>
+    <string name="error_field_required">Dette felt er påkrævet</string>
+    <string name="permission_rationale">Contacts permissions are needed for providing emailcompletions</string>
+
+    <!-- Strings to MenuScreen -->
+    <string name="menu_SignOut">Log ud</string>
+    <string name="menu_userID">Kopier bruger ID</string>
+    <string name="toast_SignOut">Logger ud</string>
+    <string name="toast_userID">Bruger ID er kopieret til udklipsholderen</string>
+    <string name="mine_btn">Min</string>
+    <string name="friends_btn">Venners</string>
+
+    <!-- Strings to addFriend -->
+    <string name="title_addFriend">Tilføj en ven</string>
+    <string name="toast_addFriend">Ven tilføjet</string>
+    <string name="toast_error">Fejl</string>
+    <string name="menu_delete_friend">Slet ven</string>
+    <string name="AddFriend_name">Vens navn:</string>
+    <string name="AddFriend_UID">Vens bruger ID:</string>
+
+    <!-- Strings to addWish -->
+    <string name="title_addWish">Tilføj et ønske</string>
+    <string name="toast_addWish">Ønsket er tilføjet</string>
+    <string name="toast_editWish">Ønsket er ændret</string>
+    <string name="AddWish_name">Navn:</string>
+    <string name="AddWish_size">Størrelse:</string>
+    <string name="AddWish_link">Hjemmeside:</string>
+    <string name="AddWish_price">Pris:</string>
+    <string name="AddWish_color">Farve:</string>
+    <string name="AddWish_shop">Butik:</string>
+    <string name="AddWish_note">Note:</string>
+
+    <!-- Strings to FriendsList -->
+    <string name="title_friendsList">Vens ønskeseddel</string>
+    <string name="toast_deleteFriend">Ven er slettet</string>
+
+    <!-- Strings to ListOfFriends -->
+    <string name="title_listOfFriends">Liste af venner</string>
+
+    <!-- Strings to Login -->
+    <string name="toast_loginEmail">Indtast email</string>
+    <string name="toast_loginPassword">Indtast password</string>
+    <string name="signin_textbtn">Ikke oprettet? Opret dig her</string>
+    <string name="signin_btn">Log ind</string>
+    <string name="signin_textv">Log ind</string>
+
+    <!-- Strings to registerUser -->
+    <string name="toast_registerSuc">Oprettelse successful</string>
+    <string name="toast_registerError">Fejl med databasen</string>
+    <string name="toast_registerFail">Oprettelse fejlede</string>
+    <string name="register_textbtn">Allerede oprettet? Log ind her</string>
+    <string name="register_btn">Opret bruger</string>
+    <string name="register_textv">Opret bruger</string>
+
+    <!-- Strings to myWishList -->
+    <string name="title_myWishList">Min ønskeseddel</string>
+
+</resources>

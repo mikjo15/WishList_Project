@@ -1,24 +1,6 @@
 <resources>
     <string name="app_name">Wish List</string>
-    <string name="title_activity_my_wish_list_screen">MyWishListScreen</string>
     <string name="action_settings">Settings</string>
-    <string name="title_activity_my_wish_list">MyWishListActivity</string>
-    <string name="mine_btn">Mine</string>
-    <string name="friends_btn">Friends</string>
-    <string name="title_activity_list_of_friends">ListOfFriendsActivity</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="AddWish_name">Name:</string>
-    <string name="AddWish_size">Size:</string>
-    <string name="AddWish_link">Webpage:</string>
-    <string name="AddWish_price">Price:</string>
-    <string name="AddWish_color">Color:</string>
-    <string name="AddWish_shop">Shop:</string>
-    <string name="AddWish_note">Note:</string>
-    <string name="AddFriend_name">Friend\'s name:</string>
-    <string name="AddFriend_UID">Friend\'s user ID:</string>
-    <string name="title_activity_login">Sign in</string>
 
     <!-- Strings related to login and registration -->
     <string name="prompt_email">Email</string>
@@ -29,30 +11,35 @@
     <string name="error_invalid_password">This password is too short</string>
     <string name="error_incorrect_password">This password is incorrect</string>
     <string name="error_field_required">This field is required</string>
-    <string name="permission_rationale">"Contacts permissions are needed for providing email
-        completions."
-    </string>
-    <string name="signin_btn">Sign in</string>
-    <string name="register_btn">Register user</string>
-    <string name="register_textv">Register user</string>
-    <string name="signin_textv">Sign in</string>
-    <string name="register_textbtn">Already registered? Sign in here</string>
-    <string name="signin_textbtn">Not registered? Sign up here</string>
-    <string name="delete_friends_text">Delete friend</string>
-    <string name="toast_userID">User ID copied to clipboard</string>
+    <string name="permission_rationale">Contacts permissions are needed for providing emailcompletions</string>
+
+    <!-- Strings to MenuScreen -->
     <string name="menu_SignOut">Sign out</string>
     <string name="menu_userID">Copy user ID</string>
     <string name="toast_SignOut">Signed out</string>
+    <string name="toast_userID">User ID copied to clipboard</string>
+    <string name="mine_btn">Mine</string>
+    <string name="friends_btn">Friends</string>
 
     <!-- Strings to addFriend -->
     <string name="title_addFriend">Add a friend</string>
     <string name="toast_addFriend">Friend added</string>
     <string name="toast_error">Error</string>
+    <string name="menu_delete_friend">Delete friend</string>
+    <string name="AddFriend_name">Friend\'s name:</string>
+    <string name="AddFriend_UID">Friend\'s user ID:</string>
 
     <!-- Strings to addWish -->
     <string name="title_addWish">Add a wish</string>
     <string name="toast_addWish">Wish added</string>
     <string name="toast_editWish">Wish edited</string>
+    <string name="AddWish_name">Name:</string>
+    <string name="AddWish_size">Size:</string>
+    <string name="AddWish_link">Web page:</string>
+    <string name="AddWish_price">Price:</string>
+    <string name="AddWish_color">Color:</string>
+    <string name="AddWish_shop">Shop:</string>
+    <string name="AddWish_note">Note:</string>
 
     <!-- Strings to FriendsList -->
     <string name="title_friendsList">Friend\'s list</string>
@@ -64,11 +51,19 @@
     <!-- Strings to Login -->
     <string name="toast_loginEmail">Please enter email</string>
     <string name="toast_loginPassword">Please enter password</string>
+    <string name="signin_textbtn">Not registered? Sign up here</string>
+    <string name="signin_btn">Sign in</string>
+    <string name="signin_textv">Sign in</string>
 
-    <!-- Strings to myWishList -->
-    <string name="title_myWishList">My wish list</string>
+    <!-- Strings to registerUser -->
     <string name="toast_registerSuc">Register successful</string>
     <string name="toast_registerError">Error with the database</string>
     <string name="toast_registerFail">Register failed</string>
+    <string name="register_textbtn">Already registered? Sign in here</string>
+    <string name="register_btn">Register user</string>
+    <string name="register_textv">Register user</string>
+
+    <!-- Strings to myWishList -->
+    <string name="title_myWishList">My wish list</string>
 
 </resources>
