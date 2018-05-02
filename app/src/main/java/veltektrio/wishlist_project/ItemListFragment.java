@@ -130,6 +130,10 @@ public class ItemListFragment extends Fragment {
                     holder.text_shop.setVisibility(View.GONE);
                 }
 
+
+                holder.editButton.setVisibility(View.GONE);
+                holder.deleteButton.setVisibility(View.GONE);
+
                 // Her sættes en onClickListener til deleteknappen
                 // Listeneren laves her inde, da vi kan bruge position til at tilgå elemtet i databasen
                 holder.deleteButton.setOnClickListener(new View.OnClickListener() {
