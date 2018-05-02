@@ -74,8 +74,7 @@ public class AddFriendActivity extends AppCompatActivity {
 
                         if (task.isSuccessful()) {
                             Toast.makeText(AddFriendActivity.this, "Friend added", Toast.LENGTH_LONG).show();
-                            Intent intent_closeFriend = new Intent(getApplicationContext(), ListOfFriendsActivity.class);
-                            startActivity(intent_closeFriend);
+                            finish();
                         } else {
                             Toast.makeText(AddFriendActivity.this, "Error", Toast.LENGTH_LONG).show();
                         }

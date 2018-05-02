@@ -58,7 +58,7 @@ public class FriendsListActivity extends AppCompatActivity {
                     .child(friend_uid);
             mDatabaseRef.getRef().removeValue();
 
-            startActivity(new Intent(getApplicationContext(), ListOfFriendsActivity.class));
+            finish();
             Toast.makeText(this, "Friend deleted", Toast.LENGTH_SHORT).show();
         }
         return true;
