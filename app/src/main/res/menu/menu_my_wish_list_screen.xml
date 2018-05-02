@@ -8,4 +8,9 @@
         android:title="Sign Out"
         app:showAsAction="never"/>
 
+    <item
+        android:id="@+id/copy_uid"
+        android:title="Copy uid"
+        app:showAsAction="never"/>
+
 </menu>

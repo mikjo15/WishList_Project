@@ -62,7 +62,10 @@ public class AddFriendActivity extends AppCompatActivity {
                     friend_uid = et_UID.getText().toString();
                 if (!TextUtils.isEmpty(et_User.getText()))
                     friend_username = et_User.getText().toString();
-                Friend newFriend = new Friend(friend_username);
+                Friend newFriend = new Friend(friend_username, friend_uid);
+                // friend uid tilføjet for at få onclick til at fungere i viewholder
+                // Fungerer når du laver en ny ven gennem listen.
+                // Klassen Friend skal indeholde id, jeg har ikke bare kunne bruge navnet
 
 
                 mDatabase.child(friend_uid).setValue(newFriend).addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -81,17 +84,5 @@ public class AddFriendActivity extends AppCompatActivity {
                 });
             }
         });
-
-        Button copyMyID = findViewById(R.id.userID_Button);
-        copyMyID.setText("My user ID(Click to copy)\n"+firebaseUser.getUid().toString());
-        copyMyID.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
-                ClipData clip = ClipData.newPlainText("UserID", firebaseUser.getUid().toString());
-                clipboard.setPrimaryClip(clip);
-            }
-        });
-
     }
 }

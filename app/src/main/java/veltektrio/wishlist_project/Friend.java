@@ -9,6 +9,11 @@ public class Friend {
     public Friend(){}
     public Friend(String UN){ username=UN;}
 
+    public Friend(String username, String id) {
+        this.username = username;
+        this.id = id;
+    }
+
     public String getid() {
         return id;
     }
