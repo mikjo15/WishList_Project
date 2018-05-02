@@ -84,17 +84,5 @@ public class AddFriendActivity extends AppCompatActivity {
                 });
             }
         });
-
-        Button copyMyID = findViewById(R.id.userID_Button);
-        copyMyID.setText("My user ID(Click to copy)\n"+firebaseUser.getUid().toString());
-        copyMyID.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
-                ClipData clip = ClipData.newPlainText("UserID", firebaseUser.getUid().toString());
-                clipboard.setPrimaryClip(clip);
-            }
-        });
-
     }
 }

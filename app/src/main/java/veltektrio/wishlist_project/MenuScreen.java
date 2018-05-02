@@ -1,5 +1,8 @@
 package veltektrio.wishlist_project;
 
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -14,6 +17,8 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class MenuScreen extends AppCompatActivity {
+
+    FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,11 +55,16 @@ public class MenuScreen extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
+        long id = item.getItemId();
         if (id == R.id.sign_out) {
             FirebaseAuth.getInstance().signOut();
             startActivity(new Intent(getApplicationContext(), LoginActivity.class));
             Toast.makeText(this, "Signed out", Toast.LENGTH_SHORT).show();
+        } else if (id == R.id.copy_uid) {
+            ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+            ClipData clip = ClipData.newPlainText("UserID", firebaseUser.getUid().toString());
+            clipboard.setPrimaryClip(clip);
+            Toast.makeText(this, "UID copied to clipboard", Toast.LENGTH_SHORT).show();
         }
         return true;
     }
