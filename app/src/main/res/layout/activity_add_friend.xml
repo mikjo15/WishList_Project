@@ -59,7 +59,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.43" />
+        app:layout_constraintGuide_percent="0.3" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab_closeFriend"
