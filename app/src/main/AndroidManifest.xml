@@ -25,7 +25,7 @@
             android:name=".MyWishListActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".ListOfFriendsActivity" />
+            android:name=".ListOfFriendsActivity"/>
         <activity
             android:name=".AddWishActivity" />
         <activity android:name=".AddFriendActivity" />
