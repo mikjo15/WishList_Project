@@ -38,16 +38,22 @@ public class ItemListFragment extends Fragment {
     // Når jeg forsøger at sende et argument med, sættes det ikke før fragmentet er infalted, det har derfor ikke kunne bruges
     // til at bestemme om det ene eller det andet skal stå
 
+    String activity_from_intent;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        activity_from_intent = getActivity().getIntent().getStringExtra("activity").trim();
+
         // Da vi går ind i fragmentet inden vi har sat et argument, bliver vi nødt til at have en dødemandsknap,
         // så der vil blive sat en database op uanset hvad
         String uid;
-        uid = firebaseUser.getUid();
+        //uid = firebaseUser.getUid();
+        uid = getActivity().getIntent().getStringExtra("refToUserID");
         mDatabase = FirebaseDatabase.getInstance().getReference().child(uid).child("wishes");
 
+        /*
         // Skal fragmentet åbne mine-listen
         if(getArguments() != null) {
             Bundle bundle = getArguments();
@@ -59,7 +65,7 @@ public class ItemListFragment extends Fragment {
                 uid = bundle.getString("friendid"); // Når man kommer fra friends skal der sendes et argument med key friendid
                 mDatabase = FirebaseDatabase.getInstance().getReference().child(uid).child("wishes"); //
             }
-        }
+        } */
 
         mDatabase.keepSynced(true);
 
@@ -140,6 +146,11 @@ public class ItemListFragment extends Fragment {
                 else {
                     holder.input_shop.setVisibility(View.GONE);
                     holder.text_shop.setVisibility(View.GONE);
+                }
+
+                if(activity_from_intent.equals("friends")) {
+                    holder.editButton.setVisibility(View.GONE);
+                    holder.deleteButton.setVisibility(View.GONE);
                 }
 
                 // Her sættes en onClickListener til deleteknappen

@@ -59,6 +59,8 @@ public class FriendFirebaseViewHolder extends RecyclerView.ViewHolder {
                 String uid = friend.getid(); // id skal være en underbranch af idbranchen, som med name under wishes
                 Log.i("CLICK", uid);
                 Intent intent = new Intent(friendContext, FriendsListActivity.class);
+                intent.putExtra("refToUserID", uid);
+                intent.putExtra("activity", "friends");
                 friendContext.startActivity(intent);
             }
         });
