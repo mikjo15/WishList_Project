@@ -1,24 +1,11 @@
 package veltektrio.wishlist_project;
 
-import android.support.design.widget.Snackbar;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
-import org.w3c.dom.Text;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import static android.support.design.widget.Snackbar.LENGTH_LONG;
-
-/**
- * Created by hgdru on 21-03-2018.
- */
 
 public class WishListAdapter extends RecyclerView.Adapter<WishListAdapter.ViewHolder> {
 
@@ -54,49 +41,49 @@ public class WishListAdapter extends RecyclerView.Adapter<WishListAdapter.ViewHo
         Wish currentwish = currentList.getWish(position);
 
 
-        if(currentwish.getName() != "")
+        if(currentwish.getName() != null)
             holder.input_name.setText(currentwish.getName());
         else {
             holder.input_name.setVisibility(View.GONE);
             holder.text_name.setVisibility(View.GONE);
         }
 
-        if(currentwish.getItemSize() != "")
+        if(currentwish.getItemSize() != null)
             holder.input_itemSize.setText(currentwish.getItemSize());
         else {
             holder.input_itemSize.setVisibility(View.GONE);
             holder.text_itemSize.setVisibility(View.GONE);
         }
 
-        if(currentwish.getUrl() != "")
+        if(currentwish.getUrl() != null)
             holder.input_url.setText(currentwish.getUrl());
         else {
             holder.input_url.setVisibility(View.GONE);
             holder.text_url.setVisibility(View.GONE);
         }
 
-        if(currentwish.getPrice() != "")
+        if(currentwish.getPrice() != null)
             holder.input_price.setText(currentwish.getPrice());
         else {
             holder.input_price.setVisibility(View.GONE);
             holder.text_price.setVisibility(View.GONE);
         }
 
-        if(currentwish.getNote() != "")
+        if(currentwish.getNote() != null)
             holder.input_note.setText(currentwish.getNote());
         else {
             holder.input_note.setVisibility(View.GONE);
             holder.text_note.setVisibility(View.GONE);
         }
 
-        if(currentwish.getColor() != "")
+        if(currentwish.getColor() != null)
             holder.input_color.setText(currentwish.getColor());
         else {
             holder.input_color.setVisibility(View.GONE);
             holder.text_color.setVisibility(View.GONE);
         }
 
-        if(currentwish.getShop() != "")
+        if(currentwish.getShop() != null)
             holder.input_shop.setText(currentwish.getShop());
         else {
             holder.input_shop.setVisibility(View.GONE);
@@ -145,11 +132,5 @@ public class WishListAdapter extends RecyclerView.Adapter<WishListAdapter.ViewHo
             text_color = v.findViewById(R.id.textView_color);
             text_shop = v.findViewById(R.id.textView_shop);
         }
-    }
-
-    //Tilføj update funktion. Denne skal bruges når der tilføjes eller redigeres ønsker
-    //Opret unikt ID på alle vores ønsker
-    public void HideEmptyTextboxes(Wish CurrentWish) {
-
     }
 }

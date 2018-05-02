@@ -39,4 +39,36 @@
     <string name="register_textbtn">Already registered? Sign in here</string>
     <string name="signin_textbtn">Not registered? Sign up here</string>
     <string name="delete_friends_text">Delete friend</string>
+    <string name="toast_userID">User ID copied to clipboard</string>
+    <string name="menu_SignOut">Sign out</string>
+    <string name="menu_userID">Copy user ID</string>
+    <string name="toast_SignOut">Signed out</string>
+
+    <!-- Strings to addFriend -->
+    <string name="title_addFriend">Add a friend</string>
+    <string name="toast_addFriend">Friend added</string>
+    <string name="toast_error">Error</string>
+
+    <!-- Strings to addWish -->
+    <string name="title_addWish">Add a wish</string>
+    <string name="toast_addWish">Wish added</string>
+    <string name="toast_editWish">Wish edited</string>
+
+    <!-- Strings to FriendsList -->
+    <string name="title_friendsList">Friend\'s list</string>
+    <string name="toast_deleteFriend">Friend deleted</string>
+
+    <!-- Strings to ListOfFriends -->
+    <string name="title_listOfFriends">List of friends</string>
+
+    <!-- Strings to Login -->
+    <string name="toast_loginEmail">Please enter email</string>
+    <string name="toast_loginPassword">Please enter password</string>
+
+    <!-- Strings to myWishList -->
+    <string name="title_myWishList">My wish list</string>
+    <string name="toast_registerSuc">Register successful</string>
+    <string name="toast_registerError">Error with the database</string>
+    <string name="toast_registerFail">Register failed</string>
+
 </resources>

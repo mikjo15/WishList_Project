@@ -5,12 +5,12 @@
 
     <item
         android:id="@+id/sign_out"
-        android:title="Sign Out"
+        android:title="@string/menu_SignOut"
         app:showAsAction="never"/>
 
     <item
         android:id="@+id/copy_uid"
-        android:title="Copy uid"
+        android:title="@string/menu_userID"
         app:showAsAction="never"/>
 
 </menu>

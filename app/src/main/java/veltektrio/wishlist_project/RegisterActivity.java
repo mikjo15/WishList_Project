@@ -11,7 +11,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -19,7 +18,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -64,12 +62,12 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         String password = editTextPassword.getText().toString().trim();
 
         if(TextUtils.isEmpty(email)) {
-            Toast.makeText(this, "Please enter email", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getResources().getString(R.string.toast_loginEmail), Toast.LENGTH_SHORT).show();
             return;
         }
 
         if(TextUtils.isEmpty(password)) {
-            Toast.makeText(this, "Please enter password", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getResources().getString(R.string.toast_loginPassword), Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -91,9 +89,9 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                                 public void onComplete(@NonNull Task<Void> task) {
 
                                     if (task.isSuccessful()) {
-                                        Toast.makeText(RegisterActivity.this, "Register successful", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(RegisterActivity.this, getResources().getString(R.string.toast_registerSuc), Toast.LENGTH_SHORT).show();
                                     } else {
-                                        Toast.makeText(RegisterActivity.this, "Error with the database", Toast.LENGTH_LONG).show();
+                                        Toast.makeText(RegisterActivity.this, getResources().getString(R.string.toast_registerError), Toast.LENGTH_LONG).show();
                                     }
 
                                 }
@@ -101,7 +99,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
                             startActivity(new Intent(getApplicationContext(), MenuScreen.class));
                         } else {
-                            Toast.makeText(RegisterActivity.this, "Register failed", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(RegisterActivity.this, getResources().getString(R.string.toast_registerFail), Toast.LENGTH_SHORT).show();
                         }
                         progressDialog.hide();
                     }

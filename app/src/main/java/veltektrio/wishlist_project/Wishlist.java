@@ -9,8 +9,7 @@ import java.util.Vector;
 
 public class Wishlist extends Wish {
 
-    public Wishlist(String un){
-        user_name = un;
+    public Wishlist(){
         wishlist = new ArrayList<>();
     }
 
@@ -25,20 +24,11 @@ public class Wishlist extends Wish {
     public Wish getPosition(int position) {
         return wishlist.get(position);
     }
-    public String getUser_name() {
-        return user_name;
-    }
-
-    public void setUser_name(String un) {
-        user_name = un;
-    }
 
     public Wish getWish(int p) { return wishlist.get(p);}
 
     //private Vector<Wish> wishlist ;
     private ArrayList<Wish> wishlist;
-
-    private String user_name;
 }
 
 

@@ -1,23 +1,15 @@
 package veltektrio.wishlist_project;
 
-import android.app.Fragment;
-import android.app.FragmentManager;
-import android.content.ClipData;
-import android.content.ClipboardManager;
-import android.content.Context;
-import android.content.Intent;
+
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
-
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-
 import butterknife.BindView;
 
 public class FriendsListActivity extends AppCompatActivity {
@@ -32,6 +24,7 @@ public class FriendsListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_friends_list);
+        getSupportActionBar().setTitle(getResources().getString(R.string.title_friendsList));
 
         mfragmentManager = getSupportFragmentManager();
         fragment_recycle = new ItemListFragment();
@@ -59,7 +52,7 @@ public class FriendsListActivity extends AppCompatActivity {
             mDatabaseRef.getRef().removeValue();
 
             finish();
-            Toast.makeText(this, "Friend deleted", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getResources().getString(R.string.toast_deleteFriend), Toast.LENGTH_SHORT).show();
         }
         return true;
     }

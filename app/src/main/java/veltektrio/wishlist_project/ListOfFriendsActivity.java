@@ -8,13 +8,10 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
-import android.widget.Toast;
-
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -31,6 +28,7 @@ public class ListOfFriendsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_of_friends);
         ButterKnife.bind(this);
+        getSupportActionBar().setTitle(getResources().getString(R.string.title_listOfFriends));
 
         //Setup FAB button & OnClickListener for it
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab_friend);

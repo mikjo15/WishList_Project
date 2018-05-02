@@ -11,7 +11,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
-
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -21,7 +20,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -60,6 +58,7 @@ public class AddWishActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_wish);
         ButterKnife.bind(this);
         final Intent intent_editWish = new Intent(getIntent());
+        getSupportActionBar().setTitle(getResources().getString(R.string.title_addWish));
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
         // Vi laver en variabel uid
@@ -106,11 +105,11 @@ public class AddWishActivity extends AppCompatActivity {
 
                         if (task.isSuccessful()) {
                             if(intent_editWish.getStringExtra("refToWish") != null)
-                                Toast.makeText(AddWishActivity.this, "Wish edited", Toast.LENGTH_LONG).show();
+                                Toast.makeText(AddWishActivity.this, getResources().getString(R.string.toast_editWish), Toast.LENGTH_LONG).show();
                             else
-                            Toast.makeText(AddWishActivity.this, "Wish added", Toast.LENGTH_LONG).show();
+                            Toast.makeText(AddWishActivity.this, getResources().getString(R.string.toast_addWish), Toast.LENGTH_LONG).show();
                         } else {
-                            Toast.makeText(AddWishActivity.this, "Error", Toast.LENGTH_LONG).show();
+                            Toast.makeText(AddWishActivity.this, getResources().getString(R.string.toast_error), Toast.LENGTH_LONG).show();
                         }
 
                     }
@@ -159,10 +158,4 @@ public class AddWishActivity extends AppCompatActivity {
 
         }
     }
-
-    @Override
-    protected void onStart(){
-        super.onStart();
-    }
-
 }

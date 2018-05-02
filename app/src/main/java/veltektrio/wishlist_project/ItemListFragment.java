@@ -12,8 +12,6 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -32,12 +30,6 @@ public class ItemListFragment extends Fragment {
     // Datareference bruges til at koble til db. Det er egentlig bare et link til Firebase på nettet
     private DatabaseReference mDatabase;
 
-    // Vi får fat i den bruger der er logget ind
-    FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-    // TODO: Dette skal skiftes ud med en intent, så vi ud fra denne intent kan bestemme om det er mine eller friends der skal vises i fragment
-    // Når jeg forsøger at sende et argument med, sættes det ikke før fragmentet er infalted, det har derfor ikke kunne bruges
-    // til at bestemme om det ene eller det andet skal stå
-
     String activity_from_intent;
 
     @Override
@@ -49,28 +41,13 @@ public class ItemListFragment extends Fragment {
         // Da vi går ind i fragmentet inden vi har sat et argument, bliver vi nødt til at have en dødemandsknap,
         // så der vil blive sat en database op uanset hvad
         String uid;
-        //uid = firebaseUser.getUid();
         uid = getActivity().getIntent().getStringExtra("refToUserID");
         mDatabase = FirebaseDatabase.getInstance().getReference().child(uid).child("wishes");
-
-        /*
-        // Skal fragmentet åbne mine-listen
-        if(getArguments() != null) {
-            Bundle bundle = getArguments();
-            Boolean myBool = bundle.getBoolean("mine"); // når vi kommer fra friends skal argumentet sættes til false
-            if(myBool) {
-                uid = firebaseUser.getUid();
-                mDatabase = FirebaseDatabase.getInstance().getReference().child(uid).child("wishes");
-            } else {
-                uid = bundle.getString("friendid"); // Når man kommer fra friends skal der sendes et argument med key friendid
-                mDatabase = FirebaseDatabase.getInstance().getReference().child(uid).child("wishes"); //
-            }
-        } */
 
         mDatabase.keepSynced(true);
 
         // Denne liste skal eksistere, jeg er ikke sikker på hvorfor. Binder muligvis fragment og activity sammen
-        MyWishListActivity.myWishlist = new Wishlist("Test wishlist");
+        MyWishListActivity.myWishlist = new Wishlist();
 
         layoutManager = new LinearLayoutManager(getActivity());
     }

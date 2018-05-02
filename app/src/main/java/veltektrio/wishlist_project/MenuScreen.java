@@ -11,10 +11,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
-
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.FirebaseDatabase;
 
 public class MenuScreen extends AppCompatActivity {
 
@@ -29,7 +27,7 @@ public class MenuScreen extends AppCompatActivity {
         mine_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String refToUserID = FirebaseAuth.getInstance().getCurrentUser().getUid().toString();
+                String refToUserID = FirebaseAuth.getInstance().getCurrentUser().getUid();
                 Intent mine_intent = new Intent(getApplicationContext(), MyWishListActivity.class);
                 mine_intent.putExtra("refToUserID", refToUserID);
                 mine_intent.putExtra("activity", "mine");
@@ -59,12 +57,12 @@ public class MenuScreen extends AppCompatActivity {
         if (id == R.id.sign_out) {
             FirebaseAuth.getInstance().signOut();
             startActivity(new Intent(getApplicationContext(), LoginActivity.class));
-            Toast.makeText(this, "Signed out", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getResources().getString(R.string.toast_SignOut), Toast.LENGTH_SHORT).show();
         } else if (id == R.id.copy_uid) {
             ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
-            ClipData clip = ClipData.newPlainText("UserID", firebaseUser.getUid().toString());
+            ClipData clip = ClipData.newPlainText("UserID", firebaseUser.getUid());
             clipboard.setPrimaryClip(clip);
-            Toast.makeText(this, "UID copied to clipboard", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getResources().getString(R.string.toast_userID), Toast.LENGTH_SHORT).show();
         }
         return true;
     }

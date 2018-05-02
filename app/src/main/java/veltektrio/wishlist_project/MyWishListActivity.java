@@ -8,12 +8,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-
 import butterknife.BindView;
-import butterknife.ButterKnife;
-
 
 public class MyWishListActivity extends AppCompatActivity {
 
@@ -30,6 +26,7 @@ public class MyWishListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_my_wish_list);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle(getResources().getString(R.string.title_myWishList));
 
         /*--------------------- til addWish ----------------------------------------*/
         mfragmentManager = getSupportFragmentManager();
