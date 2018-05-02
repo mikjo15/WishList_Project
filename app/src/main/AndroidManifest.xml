@@ -27,8 +27,7 @@
         <activity
             android:name=".ListOfFriendsActivity" />
         <activity
-            android:name=".AddWishActivity"
-            android:parentActivityName=".MyWishListActivity" />
+            android:name=".AddWishActivity" />
         <activity android:name=".AddFriendActivity" />
         <activity android:name=".FriendsListActivity" />
         <activity android:name=".MenuScreen" />
