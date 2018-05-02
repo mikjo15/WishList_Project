@@ -62,7 +62,10 @@ public class AddFriendActivity extends AppCompatActivity {
                     friend_uid = et_UID.getText().toString();
                 if (!TextUtils.isEmpty(et_User.getText()))
                     friend_username = et_User.getText().toString();
-                Friend newFriend = new Friend(friend_username);
+                Friend newFriend = new Friend(friend_username, friend_uid);
+                // friend uid tilføjet for at få onclick til at fungere i viewholder
+                // Fungerer når du laver en ny ven gennem listen.
+                // Klassen Friend skal indeholde id, jeg har ikke bare kunne bruge navnet
 
 
                 mDatabase.child(friend_uid).setValue(newFriend).addOnCompleteListener(new OnCompleteListener<Void>() {

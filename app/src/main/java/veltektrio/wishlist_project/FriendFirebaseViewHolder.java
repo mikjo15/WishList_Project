@@ -1,6 +1,9 @@
 package veltektrio.wishlist_project;
 
 import android.content.Context;
+import android.content.Intent;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
@@ -15,6 +18,8 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
+import butterknife.BindView;
+
 public class FriendFirebaseViewHolder extends RecyclerView.ViewHolder {
 
     public View friendBtn;
@@ -26,7 +31,7 @@ public class FriendFirebaseViewHolder extends RecyclerView.ViewHolder {
         friendContext = btn.getContext();
     }
 
-    public void bindFriendView(Friend friend){
+    public void bindFriendView(final Friend friend){
         Button friendName_btn = (Button) friendBtn.findViewById(R.id.friendName_btn);
         final ArrayList<Friend> friendsList = new ArrayList<>();
         DatabaseReference databaseToFriends = FirebaseDatabase.getInstance().getReference().child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("friends");
@@ -46,5 +51,16 @@ public class FriendFirebaseViewHolder extends RecyclerView.ViewHolder {
             }
         });
         friendName_btn.setText(friend.getUsername());
+
+        // Knappen sættes til at sende os videre til fragmentet
+        friendName_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String uid = friend.getid(); // id skal være en underbranch af idbranchen, som med name under wishes
+                Log.i("CLICK", uid);
+                Intent intent = new Intent(friendContext, FriendsListActivity.class);
+                friendContext.startActivity(intent);
+            }
+        });
     }
 }

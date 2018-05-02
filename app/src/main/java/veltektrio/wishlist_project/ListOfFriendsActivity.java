@@ -8,6 +8,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.auth.FirebaseAuth;
@@ -55,17 +56,6 @@ public class ListOfFriendsActivity extends AppCompatActivity {
             @Override
             protected void populateViewHolder(FriendFirebaseViewHolder viewHolder, Friend model, int position) {
                 viewHolder.bindFriendView(model);
-
-                /*viewHolder.friendBtn.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        Log.i("clicked", "Friend");
-                        String refToWish = getRef(position).toString();
-                        Intent intent = new Intent(getContext(), AddWishActivity.class);
-                        intent.putExtra("refToWish", refToWish);
-                        startActivity(intent);
-                    }
-                });*/
             }
         };
 
