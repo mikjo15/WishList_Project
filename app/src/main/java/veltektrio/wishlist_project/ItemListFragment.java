@@ -34,20 +34,38 @@ public class ItemListFragment extends Fragment {
 
     // Vi får fat i den bruger der er logget ind
     FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+    // TODO: Dette skal skiftes ud med en intent, så vi ud fra denne intent kan bestemme om det er mine eller friends der skal vises i fragment
+    // Når jeg forsøger at sende et argument med, sættes det ikke før fragmentet er infalted, det har derfor ikke kunne bruges
+    // til at bestemme om det ene eller det andet skal stå
+
+    String activity_from_intent;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // Vi laver en variabel uid
+        activity_from_intent = getActivity().getIntent().getStringExtra("activity").trim();
+
+        // Da vi går ind i fragmentet inden vi har sat et argument, bliver vi nødt til at have en dødemandsknap,
+        // så der vil blive sat en database op uanset hvad
         String uid;
-        // Hvis der er en user logget ind, sættes uid til brugerens uid og vi går ind i dennes database
-        if (firebaseUser != null) {
-            uid = firebaseUser.getUid();
-            mDatabase = FirebaseDatabase.getInstance().getReference().child(uid).child("wishes");
-            // det sidste child bruges her til at tilgå ønskelisten
-            // Hvis fragmentet skal bruges til friends, skal vi måske lave en ny databasereference, der tilgår friends
-        }
+        //uid = firebaseUser.getUid();
+        uid = getActivity().getIntent().getStringExtra("refToUserID");
+        mDatabase = FirebaseDatabase.getInstance().getReference().child(uid).child("wishes");
+
+        /*
+        // Skal fragmentet åbne mine-listen
+        if(getArguments() != null) {
+            Bundle bundle = getArguments();
+            Boolean myBool = bundle.getBoolean("mine"); // når vi kommer fra friends skal argumentet sættes til false
+            if(myBool) {
+                uid = firebaseUser.getUid();
+                mDatabase = FirebaseDatabase.getInstance().getReference().child(uid).child("wishes");
+            } else {
+                uid = bundle.getString("friendid"); // Når man kommer fra friends skal der sendes et argument med key friendid
+                mDatabase = FirebaseDatabase.getInstance().getReference().child(uid).child("wishes"); //
+            }
+        } */
 
         mDatabase.keepSynced(true);
 
@@ -81,58 +99,59 @@ public class ItemListFragment extends Fragment {
 
             @Override
             protected void populateViewHolder(WishViewHolder holder, Wish currentwish, final int position) {
-                if(currentwish.getName() != "") // Alle if'sne kan sættes i en funktion
+                if(currentwish.getName() != null) // Alle if'sne kan sættes i en funktion
                     holder.input_name.setText(currentwish.getName());
                 else {
                     holder.input_name.setVisibility(View.GONE);
                     holder.text_name.setVisibility(View.GONE);
                 }
 
-                if(currentwish.getItemSize() != "")
+                if(currentwish.getItemSize() != null)
                     holder.input_itemSize.setText(currentwish.getItemSize());
                 else {
                     holder.input_itemSize.setVisibility(View.GONE);
                     holder.text_itemSize.setVisibility(View.GONE);
                 }
 
-                if(currentwish.getUrl() != "")
+                if(currentwish.getUrl() != null)
                     holder.input_url.setText(currentwish.getUrl());
                 else {
                     holder.input_url.setVisibility(View.GONE);
                     holder.text_url.setVisibility(View.GONE);
                 }
 
-                if(currentwish.getPrice() != 0)
-                    holder.input_price.setText(Double.toString(currentwish.getPrice()));
+                if(currentwish.getPrice() != null)
+                    holder.input_price.setText(currentwish.getPrice());
                 else {
                     holder.input_price.setVisibility(View.GONE);
                     holder.text_price.setVisibility(View.GONE);
                 }
 
-                if(currentwish.getNote() != "")
+                if(currentwish.getNote() != null)
                     holder.input_note.setText(currentwish.getNote());
                 else {
                     holder.input_note.setVisibility(View.GONE);
                     holder.text_note.setVisibility(View.GONE);
                 }
 
-                if(currentwish.getColor() != "")
+                if(currentwish.getColor() != null)
                     holder.input_color.setText(currentwish.getColor());
                 else {
                     holder.input_color.setVisibility(View.GONE);
                     holder.text_color.setVisibility(View.GONE);
                 }
 
-                if(currentwish.getShop() != "")
+                if(currentwish.getShop() != null)
                     holder.input_shop.setText(currentwish.getShop());
                 else {
                     holder.input_shop.setVisibility(View.GONE);
                     holder.text_shop.setVisibility(View.GONE);
                 }
 
-
-                holder.editButton.setVisibility(View.GONE);
-                holder.deleteButton.setVisibility(View.GONE);
+                if(activity_from_intent.equals("friends")) {
+                    holder.editButton.setVisibility(View.GONE);
+                    holder.deleteButton.setVisibility(View.GONE);
+                }
 
                 // Her sættes en onClickListener til deleteknappen
                 // Listeneren laves her inde, da vi kan bruge position til at tilgå elemtet i databasen

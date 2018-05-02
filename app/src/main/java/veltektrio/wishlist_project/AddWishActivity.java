@@ -27,13 +27,6 @@ import butterknife.ButterKnife;
 
 public class AddWishActivity extends AppCompatActivity {
 
-    private String name;
-    private String size;
-    private String link;
-    private double price;
-    private String color;
-    private String shop;
-    private String note;
 
     private DatabaseReference mDatabase;
 
@@ -41,10 +34,10 @@ public class AddWishActivity extends AppCompatActivity {
     public EditText et_name;
 
     @BindView(R.id.editText_size)
-    public EditText et_size;
+    public EditText et_itemSize;
 
     @BindView(R.id.editText_link)
-    public EditText et_link;
+    public EditText et_url;
 
     @BindView(R.id.editText_price)
     public EditText et_price;
@@ -87,28 +80,27 @@ public class AddWishActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                System.out.println("TRYK");
+               Wish newWish = new Wish();
                 //tester om editText er tomme
                 if (!TextUtils.isEmpty(et_name.getText()))
-                    name = et_name.getText().toString();
-                if (!TextUtils.isEmpty(et_size.getText()))
-                    size = et_size.getText().toString();
-                if (!TextUtils.isEmpty(et_link.getText()))
-                    link = et_link.getText().toString();
+                    newWish.setName(et_name.getText().toString());
+                if (!TextUtils.isEmpty(et_itemSize.getText()))
+                    newWish.setItemSize(et_itemSize.getText().toString());
+                if (!TextUtils.isEmpty(et_url.getText()))
+                    newWish.setUrl(et_url.getText().toString());
                 if (!TextUtils.isEmpty(et_price.getText()))
-                    price = Double.parseDouble(et_price.getText().toString());
+                    newWish.setPrice(et_price.getText().toString());
                 if (!TextUtils.isEmpty(et_color.getText()))
-                    color = et_color.getText().toString();
+                    newWish.setColor(et_color.getText().toString());
                 if (!TextUtils.isEmpty(et_shop.getText()))
-                    shop = et_shop.getText().toString();
+                    newWish.setShop(et_shop.getText().toString());
                 if (!TextUtils.isEmpty(et_note.getText()))
-                    note = et_note.getText().toString();
-                //Opretter wish med alle de felter der er
+                    newWish.setNote(et_note.getText().toString());
 
-                Wish newWish = new Wish(name, size, link, price, color, shop, note);
 
                 MyWishListActivity.myWishlist.add_wish(newWish);
 
-                mDatabase.child(name).setValue(newWish).addOnCompleteListener(new OnCompleteListener<Void>() {
+                mDatabase.child(newWish.getName()).setValue(newWish).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
 
@@ -144,9 +136,9 @@ public class AddWishActivity extends AppCompatActivity {
                         if (refTodetails.equals("name"))
                             et_name.setText(snapshot.getValue().toString());
                         else if (refTodetails.equals("itemsize"))
-                            et_size.setText(snapshot.getValue().toString());
+                            et_itemSize.setText(snapshot.getValue().toString());
                         else if (refTodetails.equals("url"))
-                            et_link.setText(snapshot.getValue().toString());
+                            et_url.setText(snapshot.getValue().toString());
                         else if (refTodetails.equals("price"))
                             et_price.setText(snapshot.getValue().toString());
                         else if (refTodetails.equals("color"))

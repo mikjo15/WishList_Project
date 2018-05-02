@@ -49,6 +49,9 @@ public class MyWishListActivity extends AppCompatActivity {
         /* ----------------------- til recycleview -----------------------------------*/
         // Har tilføjet en bundle der sørger for det er den rigtige gren af databasen der tilgås
         fragment_recycle = new ItemListFragment();
+        Bundle bundle = new Bundle(); // Vi laver en bundle der skal sendes videre til fragmentet
+        bundle.putBoolean("mine", true); // mine sættes til true
+        fragment_recycle.setArguments(bundle); // på denne måde ved fragmentet at den skal sættes til mine-listen
         mfragmentManager.beginTransaction()
                 .add(R.id.MyWishList_ItemListFragment, fragment_recycle)
                 .commit();

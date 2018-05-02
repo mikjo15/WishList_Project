@@ -10,6 +10,8 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class MenuScreen extends AppCompatActivity {
 
@@ -22,7 +24,10 @@ public class MenuScreen extends AppCompatActivity {
         mine_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                String refToUserID = FirebaseAuth.getInstance().getCurrentUser().getUid().toString();
                 Intent mine_intent = new Intent(getApplicationContext(), MyWishListActivity.class);
+                mine_intent.putExtra("refToUserID", refToUserID);
+                mine_intent.putExtra("activity", "mine");
                 startActivity(mine_intent);
             }
         });
