@@ -34,14 +34,18 @@ public class ItemListFragment extends Fragment {
 
     private String uid;
 
+    String activity_from_intent;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
 
-        final String activity_from_intent = getActivity().getIntent().getStringExtra("activity").trim();
+        activity_from_intent = getActivity().getIntent().getStringExtra("activity").trim();
 
-        if(activity_from_intent.equals("mine"))
+        if(activity_from_intent.equals("friend"))
+            uid = getActivity().getIntent().getStringExtra("refToUserID");
+        else
             uid = getActivity().getIntent().getStringExtra("refToUserID");
 
 
@@ -124,6 +128,12 @@ public class ItemListFragment extends Fragment {
                 else {
                     holder.input_shop.setVisibility(View.GONE);
                     holder.text_shop.setVisibility(View.GONE);
+                }
+
+                if(activity_from_intent.equals("friends"))
+                {
+                    holder.editButton.setVisibility(View.GONE);
+                    holder.deleteButton.setVisibility(View.GONE);
                 }
 
                 // Her sættes en onClickListener til deleteknappen
