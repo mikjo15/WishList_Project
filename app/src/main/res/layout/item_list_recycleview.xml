@@ -28,15 +28,15 @@
             android:textColor="@color/colorPrimaryDark"
             android:textSize="18sp"
             android:textStyle="bold"
-            app:layout_constraintStart_toEndOf="@+id/imageView"
-            app:layout_constraintTop_toTopOf="@+id/imageView" />
+            app:layout_constraintBottom_toBottomOf="@+id/imageView"
+            app:layout_constraintStart_toEndOf="@+id/imageView" />
 
         <android.support.constraint.Guideline
             android:id="@+id/guideline"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.45" />
+            app:layout_constraintGuide_percent="0.55" />
 
         <TextView
             android:id="@+id/textView_size"
@@ -201,6 +201,14 @@
             app:layout_constraintEnd_toStartOf="@+id/deleteWishButton"
             app:layout_constraintTop_toTopOf="parent"
             card_view:srcCompat="@drawable/ic_create_white_24dp" />
+
+        <TextView
+            android:id="@+id/textView_empty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/textView_note"
+            app:layout_constraintTop_toBottomOf="@+id/textView_note" />
 
     </android.support.constraint.ConstraintLayout>
 
