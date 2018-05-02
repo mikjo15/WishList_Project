@@ -5,39 +5,69 @@ package veltektrio.wishlist_project;
  */
 
 public class Wish {
-    public Wish(String n, String s, String u, double p, String no, String c, String sh){
-    name = n;
-    size = s;
-    url = u;
-    price = p;
-    color = c;
-    shop = sh;
-    note = no;
-    }
-
     public Wish(){}
 
-    public String getName(){return name;}
-    public void setName(String n) {name = n;}
-    public String getItemSize(){return size;}
-    public void setItemSize(String n) {size = n;}
-    public String getUrl(){return url;}
-    public void setUrl(String n) {url = n;}
-    public double getPrice(){return price;}
-    public void setPrice(double n) {price = n;}
-    public String getNote(){return note;}
-    public void setNote(String n) {note = n;}
-    public String getColor(){return color;}
-    public void setColor(String n) {color = n;}
-    public String getShop(){return shop;}
-    public void setShop(String n) {shop = n;}
+    private String name;
+    private String itemSize;
+    private String url;
+    private String price;
+    private String color;
+    private String shop;
+    private String note;
 
+    public String getName() {
+        return name;
+    }
 
-    private String name = "NO NAME";
-    private String size = "NO SIZE";
-    private String url = "";
-    private double price = 0.0;
-    private String color = "NO COLOR";
-    private String shop = "NO SHOP";
-    private String note = "NO NOTE";
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getItemSize() {
+        return itemSize;
+    }
+
+    public void setItemSize(String itemSize) {
+        this.itemSize = itemSize;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public String getPrice() {
+        return price;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
+
+    public String getShop() {
+        return shop;
+    }
+
+    public void setShop(String shop) {
+        this.shop = shop;
+    }
+
+    public String getNote() {
+        return note;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
+    }
 }

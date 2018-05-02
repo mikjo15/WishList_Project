@@ -99,49 +99,49 @@ public class ItemListFragment extends Fragment {
 
             @Override
             protected void populateViewHolder(WishViewHolder holder, Wish currentwish, final int position) {
-                if(currentwish.getName() != "") // Alle if'sne kan sættes i en funktion
+                if(currentwish.getName() != null) // Alle if'sne kan sættes i en funktion
                     holder.input_name.setText(currentwish.getName());
                 else {
                     holder.input_name.setVisibility(View.GONE);
                     holder.text_name.setVisibility(View.GONE);
                 }
 
-                if(currentwish.getItemSize() != "")
+                if(currentwish.getItemSize() != null)
                     holder.input_itemSize.setText(currentwish.getItemSize());
                 else {
                     holder.input_itemSize.setVisibility(View.GONE);
                     holder.text_itemSize.setVisibility(View.GONE);
                 }
 
-                if(currentwish.getUrl() != "")
+                if(currentwish.getUrl() != null)
                     holder.input_url.setText(currentwish.getUrl());
                 else {
                     holder.input_url.setVisibility(View.GONE);
                     holder.text_url.setVisibility(View.GONE);
                 }
 
-                if(currentwish.getPrice() != 0)
-                    holder.input_price.setText(Double.toString(currentwish.getPrice()));
+                if(currentwish.getPrice() != null)
+                    holder.input_price.setText(currentwish.getPrice());
                 else {
                     holder.input_price.setVisibility(View.GONE);
                     holder.text_price.setVisibility(View.GONE);
                 }
 
-                if(currentwish.getNote() != "")
+                if(currentwish.getNote() != null)
                     holder.input_note.setText(currentwish.getNote());
                 else {
                     holder.input_note.setVisibility(View.GONE);
                     holder.text_note.setVisibility(View.GONE);
                 }
 
-                if(currentwish.getColor() != "")
+                if(currentwish.getColor() != null)
                     holder.input_color.setText(currentwish.getColor());
                 else {
                     holder.input_color.setVisibility(View.GONE);
                     holder.text_color.setVisibility(View.GONE);
                 }
 
-                if(currentwish.getShop() != "")
+                if(currentwish.getShop() != null)
                     holder.input_shop.setText(currentwish.getShop());
                 else {
                     holder.input_shop.setVisibility(View.GONE);
