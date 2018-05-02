@@ -1,5 +1,6 @@
 package veltektrio.wishlist_project;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -55,14 +56,15 @@ public class ListOfFriendsActivity extends AppCompatActivity {
             @Override
             protected void populateViewHolder(FriendFirebaseViewHolder viewHolder, Friend model, int position) {
                 viewHolder.bindFriendView(model);
+               /* final int pos = position;
 
-                /*viewHolder.friendBtn.setOnClickListener(new View.OnClickListener() {
+                viewHolder.friendBtn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         Log.i("clicked", "Friend");
-                        String refToWish = getRef(position).toString();
-                        Intent intent = new Intent(getContext(), AddWishActivity.class);
-                        intent.putExtra("refToWish", refToWish);
+                        String refToFriend = getRef(pos).toString();
+                        Intent intent = new Intent(getApplicationContext(), MyWishListActivity.class);
+                        intent.putExtra("refToWish", refToFriend);
                         startActivity(intent);
                     }
                 });*/

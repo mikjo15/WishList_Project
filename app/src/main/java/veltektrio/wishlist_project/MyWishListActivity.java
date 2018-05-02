@@ -42,6 +42,7 @@ public class MyWishListActivity extends AppCompatActivity {
             public void onClick(View view) {
                 System.out.println("fab click to addWish");
                 Intent intent_add = new Intent(getApplicationContext(), AddWishActivity.class);
+                intent_add.putExtra("activity", "add_wish");
                 startActivity(intent_add);
             }
         });

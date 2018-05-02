@@ -22,7 +22,10 @@ public class MenuScreen extends AppCompatActivity {
         mine_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                String refToUserID = FirebaseAuth.getInstance().getCurrentUser().getUid().toString();
                 Intent mine_intent = new Intent(getApplicationContext(), MyWishListActivity.class);
+                mine_intent.putExtra("refToUserID", refToUserID);
+                mine_intent.putExtra("activity", "mine");
                 startActivity(mine_intent);
             }
         });

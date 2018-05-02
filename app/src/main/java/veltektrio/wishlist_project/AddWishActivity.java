@@ -27,14 +27,6 @@ import butterknife.ButterKnife;
 
 public class AddWishActivity extends AppCompatActivity {
 
-    private String name;
-    private String size;
-    private String link;
-    private double price;
-    private String color;
-    private String shop;
-    private String note;
-
     private DatabaseReference mDatabase;
 
     @BindView(R.id.editText_name)
@@ -58,27 +50,16 @@ public class AddWishActivity extends AppCompatActivity {
     @BindView(R.id.editText_note)
     public EditText et_note;
 
-    // Vi får fat i den bruger der er logget ind
-    FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_wish);
         ButterKnife.bind(this);
-        final Intent intent_editWish = new Intent(getIntent());
 
-        mDatabase = FirebaseDatabase.getInstance().getReference();
-        // Vi laver en variabel uid
-        String uid;
-        // Hvis der er en user logget ind, sættes uid til brugerens uid og vi går ind i dennes database
-        if (firebaseUser != null) {
-            uid = firebaseUser.getUid();
-            mDatabase = FirebaseDatabase.getInstance().getReference().child(uid).child("wishes");
-            // det sidste child bruges her til at tilgå ønskelisten
-            // Hvis fragmentet skal bruges til friends, skal vi måske lave en ny databasereference, der tilgår friends
-        }
-
+        final String activity_from_intent = getIntent().getStringExtra("activity");
+        mDatabase = FirebaseDatabase.getInstance().getReference().child(FirebaseAuth.getInstance().getCurrentUser().toString()).child("wishes");
 
         FloatingActionButton fab_add = findViewById(R.id.fab_add);
         fab_add.setImageResource(R.drawable.ic_done_black_24dp);
@@ -87,33 +68,31 @@ public class AddWishActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                System.out.println("TRYK");
+                Wish newWish = new Wish();
                 //tester om editText er tomme
                 if (!TextUtils.isEmpty(et_name.getText()))
-                    name = et_name.getText().toString();
+                    newWish.setName(et_name.getText().toString());
                 if (!TextUtils.isEmpty(et_size.getText()))
-                    size = et_size.getText().toString();
+                    newWish.setItemSize(et_size.getText().toString());
                 if (!TextUtils.isEmpty(et_link.getText()))
-                    link = et_link.getText().toString();
+                    newWish.setUrl(et_link.getText().toString());
                 if (!TextUtils.isEmpty(et_price.getText()))
-                    price = Double.parseDouble(et_price.getText().toString());
+                    newWish.setPrice(et_price.getText().toString());
                 if (!TextUtils.isEmpty(et_color.getText()))
-                    color = et_color.getText().toString();
+                    newWish.setColor(et_color.getText().toString());
                 if (!TextUtils.isEmpty(et_shop.getText()))
-                    shop = et_shop.getText().toString();
+                    newWish.setShop(et_shop.getText().toString());
                 if (!TextUtils.isEmpty(et_note.getText()))
-                    note = et_note.getText().toString();
-                //Opretter wish med alle de felter der er
-
-                Wish newWish = new Wish(name, size, link, price, color, shop, note);
+                    newWish.setNote(et_note.getText().toString());
 
                 MyWishListActivity.myWishlist.add_wish(newWish);
 
-                mDatabase.child(name).setValue(newWish).addOnCompleteListener(new OnCompleteListener<Void>() {
+                mDatabase.child(newWish.getName()).setValue(newWish).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
 
                         if (task.isSuccessful()) {
-                            if(intent_editWish.getStringExtra("refToWish") != null)
+                            if(activity_from_intent == "edit_wish")
                                 Toast.makeText(AddWishActivity.this, "Wish edited", Toast.LENGTH_LONG).show();
                             else
                             Toast.makeText(AddWishActivity.this, "Wish added", Toast.LENGTH_LONG).show();
@@ -129,7 +108,7 @@ public class AddWishActivity extends AppCompatActivity {
         });
 
         //Når aktiviteten bruges til edit wish
-        if(intent_editWish.getStringExtra("refToWish") != null)
+        if(activity_from_intent == "edit_wish")
         {
             String refToWish = getIntent().getStringExtra("refToWish");
             Log.i("RefToWish", refToWish);
@@ -138,22 +117,22 @@ public class AddWishActivity extends AppCompatActivity {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                        String refTodetails = snapshot.getKey().toString().toLowerCase().trim();
-                        Log.i("Key from wish", refTodetails);
+                        String refToDetails = snapshot.getKey().toString().toLowerCase();
+                        Log.i("Key from wish", refToDetails);
 
-                        if (refTodetails.equals("name"))
+                        if (refToDetails.equals("name"))
                             et_name.setText(snapshot.getValue().toString());
-                        else if (refTodetails.equals("itemsize"))
+                        else if (refToDetails.equals("itemsize"))
                             et_size.setText(snapshot.getValue().toString());
-                        else if (refTodetails.equals("url"))
+                        else if (refToDetails.equals("url"))
                             et_link.setText(snapshot.getValue().toString());
-                        else if (refTodetails.equals("price"))
+                        else if (refToDetails.equals("price"))
                             et_price.setText(snapshot.getValue().toString());
-                        else if (refTodetails.equals("color"))
+                        else if (refToDetails.equals("color"))
                             et_color.setText(snapshot.getValue().toString());
-                        else if (refTodetails.equals("shop"))
+                        else if (refToDetails.equals("shop"))
                             et_shop.setText(snapshot.getValue().toString());
-                        else if (refTodetails.equals("note"))
+                        else if (refToDetails.equals("note"))
                             et_note.setText(snapshot.getValue().toString());
                     }
 
@@ -167,10 +146,4 @@ public class AddWishActivity extends AppCompatActivity {
 
         }
     }
-
-    @Override
-    protected void onStart(){
-        super.onStart();
-    }
-
 }

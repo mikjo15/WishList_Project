@@ -32,27 +32,24 @@ public class ItemListFragment extends Fragment {
     // Datareference bruges til at koble til db. Det er egentlig bare et link til Firebase på nettet
     private DatabaseReference mDatabase;
 
-    // Vi får fat i den bruger der er logget ind
-    FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+    private String uid;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // Vi laver en variabel uid
-        String uid;
-        // Hvis der er en user logget ind, sættes uid til brugerens uid og vi går ind i dennes database
-        if (firebaseUser != null) {
-            uid = firebaseUser.getUid();
-            mDatabase = FirebaseDatabase.getInstance().getReference().child(uid).child("wishes");
-            // det sidste child bruges her til at tilgå ønskelisten
-            // Hvis fragmentet skal bruges til friends, skal vi måske lave en ny databasereference, der tilgår friends
-        }
 
+        final String activity_from_intent = getActivity().getIntent().getStringExtra("activity").trim();
+
+        if(activity_from_intent.equals("mine"))
+            uid = getActivity().getIntent().getStringExtra("refToUserID");
+
+
+        mDatabase = FirebaseDatabase.getInstance().getReference().child(uid).child("wishes");
         mDatabase.keepSynced(true);
 
         // Denne liste skal eksistere, jeg er ikke sikker på hvorfor. Binder muligvis fragment og activity sammen
-        MyWishListActivity.myWishlist = new Wishlist("Test wishlist");
+        MyWishListActivity.myWishlist = new Wishlist("user");
 
         layoutManager = new LinearLayoutManager(getActivity());
     }
@@ -75,8 +72,7 @@ public class ItemListFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        final FirebaseRecyclerAdapter<Wish, WishViewHolder> firebaseRecyclerAdapter;
-        firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<Wish, WishViewHolder>
+        final FirebaseRecyclerAdapter<Wish, WishViewHolder> firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<Wish, WishViewHolder>
                 (Wish.class, R.layout.item_list_recycleview, WishViewHolder.class, mDatabase) {
 
             @Override
@@ -102,8 +98,8 @@ public class ItemListFragment extends Fragment {
                     holder.text_url.setVisibility(View.GONE);
                 }
 
-                if(currentwish.getPrice() != 0)
-                    holder.input_price.setText(Double.toString(currentwish.getPrice()));
+                if(currentwish.getPrice() != "")
+                    holder.input_price.setText(currentwish.getPrice());
                 else {
                     holder.input_price.setVisibility(View.GONE);
                     holder.text_price.setVisibility(View.GONE);
@@ -137,7 +133,7 @@ public class ItemListFragment extends Fragment {
                     public void onClick(View view) {
                         Log.i("clicked", "Deleted");
                         getRef(position).removeValue();
-                    }
+                    };
                 });
 
                 holder.editButton.setOnClickListener(new View.OnClickListener() {
@@ -147,6 +143,7 @@ public class ItemListFragment extends Fragment {
                         String refToWish = getRef(position).toString();
                         Intent intent = new Intent(getContext(), AddWishActivity.class);
                         intent.putExtra("refToWish", refToWish);
+                        intent.putExtra("activity", "edit_wish");
                         startActivity(intent);
                     }
                 });

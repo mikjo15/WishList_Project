@@ -75,8 +75,8 @@ public class WishListAdapter extends RecyclerView.Adapter<WishListAdapter.ViewHo
             holder.text_url.setVisibility(View.GONE);
         }
 
-        if(currentwish.getPrice() != 0)
-            holder.input_price.setText(Double.toString(currentwish.getPrice()));
+        if(currentwish.getPrice() != "")
+            holder.input_price.setText(currentwish.getPrice());
         else {
             holder.input_price.setVisibility(View.GONE);
             holder.text_price.setVisibility(View.GONE);
