@@ -16,20 +16,17 @@ import java.util.ArrayList;
 
 public class FriendFirebaseViewHolder extends RecyclerView.ViewHolder {
 
-    // Variabler initialiseres
-    public View friendBtn;
+    public View friendView;
     public Context friendContext;
 
-    // Vi instantierer knappen i viewholderen
-    public FriendFirebaseViewHolder(View btn){
-        super(btn);
-        friendBtn = btn;
-        friendContext = btn.getContext();
+    public FriendFirebaseViewHolder(View v){
+        super(v);
+        friendView = v;
+        friendContext = v.getContext();
     }
 
-    // Vi binder knappen til venner fra Firebase, ved hjælp af en ArrayList
     public void bindFriendView(final Friend friend){
-        Button friendName_btn = (Button) friendBtn.findViewById(R.id.friendName_btn);
+        Button friendName_btn = (Button) friendView.findViewById(R.id.friendName_btn);
         final ArrayList<Friend> friendsList = new ArrayList<>();
         DatabaseReference databaseToFriends = FirebaseDatabase.getInstance().getReference().child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("friends");
         databaseToFriends.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -37,6 +34,7 @@ public class FriendFirebaseViewHolder extends RecyclerView.ViewHolder {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     friendsList.add(snapshot.getValue(Friend.class));
+                    Log.i("Friend Value: ", snapshot.getValue(Friend.class).toString());
                 }
             }
 
@@ -45,7 +43,7 @@ public class FriendFirebaseViewHolder extends RecyclerView.ViewHolder {
 
             }
         });
-        friendName_btn.setText(friend.getUsername()); // Knappens text sættes til vennens brugernavn
+        friendName_btn.setText(friend.getUsername());
 
         // Knappen sættes til at sende os videre til fragmentet
         friendName_btn.setOnClickListener(new View.OnClickListener() {

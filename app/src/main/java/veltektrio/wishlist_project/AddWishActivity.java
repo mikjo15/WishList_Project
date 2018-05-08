@@ -25,7 +25,7 @@ import butterknife.ButterKnife;
 
 public class AddWishActivity extends AppCompatActivity {
 
-    // Variabler instantieres og bindes
+
     private DatabaseReference mDatabase;
 
     @BindView(R.id.editText_name)
@@ -57,17 +57,18 @@ public class AddWishActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_wish);
         ButterKnife.bind(this);
-        final Intent intent_editWish = new Intent(getIntent()); // Hvis der skal ændres et ønske kommer der en intent med vi henter her
+        final Intent intent_editWish = new Intent(getIntent());
         getSupportActionBar().setTitle(getResources().getString(R.string.title_addWish));
 
-        mDatabase = FirebaseDatabase.getInstance().getReference(); // Vi henter databasen
-
-        // Hvis der er en user logget ind, sættes uid til brugerens uid og vi går ind i dennes database
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+        // Vi laver en variabel uid
         String uid;
+        // Hvis der er en user logget ind, sættes uid til brugerens uid og vi går ind i dennes database
         if (firebaseUser != null) {
             uid = firebaseUser.getUid();
             mDatabase = FirebaseDatabase.getInstance().getReference().child(uid).child("wishes");
             // det sidste child bruges her til at tilgå ønskelisten
+            // Hvis fragmentet skal bruges til friends, skal vi måske lave en ny databasereference, der tilgår friends
         }
 
 
@@ -77,8 +78,9 @@ public class AddWishActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                // OnClickListener sættes til at lave et nyt wish og vi tester om editText er tomme
+               System.out.println("TRYK");
                Wish newWish = new Wish();
+                //tester om editText er tomme
                 if (!TextUtils.isEmpty(et_name.getText()))
                     newWish.setName(et_name.getText().toString());
                 if (!TextUtils.isEmpty(et_itemSize.getText()))
@@ -94,7 +96,7 @@ public class AddWishActivity extends AppCompatActivity {
                 if (!TextUtils.isEmpty(et_note.getText()))
                     newWish.setNote(et_note.getText().toString());
 
-                // Vi tilføjer ønsket til databasen og der gives en besked om hvorvidt det lykkedes
+
                 mDatabase.child(newWish.getName()).setValue(newWish).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
@@ -111,11 +113,11 @@ public class AddWishActivity extends AppCompatActivity {
                     }
                 });
 
-                  finish(); // Vi kalder onDestroy, så aktiviteten ikke ligger i backstacken når vi lukker den
+                  finish();
             }
         });
 
-        // Når aktiviteten bruges til edit wish, sættes eksisterende data ind og ændret data opdateres efterfølgende
+        //Når aktiviteten bruges til edit wish
         if(intent_editWish.getStringExtra("refToWish") != null)
         {
             String refToWish = getIntent().getStringExtra("refToWish");
@@ -148,6 +150,7 @@ public class AddWishActivity extends AppCompatActivity {
 
                 @Override
                 public void onCancelled(DatabaseError databaseError) {
+
                 }
             });
 
