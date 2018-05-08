@@ -16,17 +16,17 @@ import java.util.ArrayList;
 
 public class FriendFirebaseViewHolder extends RecyclerView.ViewHolder {
 
-    public View friendBtn;
+    public View friendView;
     public Context friendContext;
 
-    public FriendFirebaseViewHolder(View btn){
-        super(btn);
-        friendBtn = btn;
-        friendContext = btn.getContext();
+    public FriendFirebaseViewHolder(View v){
+        super(v);
+        friendView = v;
+        friendContext = v.getContext();
     }
 
     public void bindFriendView(final Friend friend){
-        Button friendName_btn = (Button) friendBtn.findViewById(R.id.friendName_btn);
+        Button friendName_btn = (Button) friendView.findViewById(R.id.friendName_btn);
         final ArrayList<Friend> friendsList = new ArrayList<>();
         DatabaseReference databaseToFriends = FirebaseDatabase.getInstance().getReference().child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("friends");
         databaseToFriends.addListenerForSingleValueEvent(new ValueEventListener() {

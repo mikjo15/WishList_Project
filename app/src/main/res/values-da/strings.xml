@@ -56,6 +56,8 @@
     <string name="signin_textbtn">Ikke oprettet? Opret dig her</string>
     <string name="signin_btn">Log ind</string>
     <string name="signin_textv">Log ind</string>
+    <string name="signin_hintEmail"> Indtast din email</string>
+    <string name="signin_hintPassword">Indtast dit password. Min. 6 karakter</string>
 
     <!-- Strings to registerUser -->
     <string name="toast_registerSuc">Oprettelse successful</string>
@@ -64,6 +66,8 @@
     <string name="register_textbtn">Allerede oprettet? Log ind her</string>
     <string name="register_btn">Opret bruger</string>
     <string name="register_textv">Opret bruger</string>
+    <string name="register_hintEmail"> Indtast din email</string>
+    <string name="register_hintPassword">Indtast dit password. Min. 6 karakter</string>
 
     <!-- Strings to myWishList -->
     <string name="title_myWishList">Min ønskeseddel</string>

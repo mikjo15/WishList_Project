@@ -30,7 +30,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
-            android:hint="Enter your email"
+            android:hint="@string/signin_hintEmail"
             android:inputType="textEmailAddress" />
 
         <EditText
@@ -38,7 +38,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
-            android:hint="Enter your password. Min. 6 characters"
+            android:hint="@string/signin_hintPassword"
             android:inputType="textPassword" />
 
         <Button

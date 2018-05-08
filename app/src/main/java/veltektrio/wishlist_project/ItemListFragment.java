@@ -15,6 +15,8 @@ import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.ArrayList;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -45,9 +47,6 @@ public class ItemListFragment extends Fragment {
         mDatabase = FirebaseDatabase.getInstance().getReference().child(uid).child("wishes");
 
         mDatabase.keepSynced(true);
-
-        // Denne liste skal eksistere, jeg er ikke sikker på hvorfor. Binder muligvis fragment og activity sammen
-        MyWishListActivity.myWishlist = new Wishlist();
 
         layoutManager = new LinearLayoutManager(getActivity());
     }

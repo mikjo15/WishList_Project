@@ -13,7 +13,6 @@ import butterknife.BindView;
 
 public class MyWishListActivity extends AppCompatActivity {
 
-    public static Wishlist myWishlist;
     private FragmentManager mfragmentManager;
     private Fragment fragment_recycle;
 

@@ -97,8 +97,6 @@ public class AddWishActivity extends AppCompatActivity {
                     newWish.setNote(et_note.getText().toString());
 
 
-                MyWishListActivity.myWishlist.add_wish(newWish);
-
                 mDatabase.child(newWish.getName()).setValue(newWish).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
