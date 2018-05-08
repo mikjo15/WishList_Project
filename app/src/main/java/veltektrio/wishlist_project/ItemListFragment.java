@@ -26,18 +26,20 @@ public class ItemListFragment extends Fragment {
     @BindView(R.id.itemlist_recycler_view) // Her bindes recyclerviewet der viser ønskerne
     public RecyclerView recyclerView;
 
-    // private RecyclerView.Adapter adapter;
+    // Layoutmanager instantieres
     private RecyclerView.LayoutManager layoutManager;
 
     // Datareference bruges til at koble til db. Det er egentlig bare et link til Firebase på nettet
     private DatabaseReference mDatabase;
 
+    // String der bruges til at identificere hvilken activity vi kommer fra
     String activity_from_intent;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        // Vi henter stringen fra en intent
         activity_from_intent = getActivity().getIntent().getStringExtra("activity").trim();
 
         // Da vi går ind i fragmentet inden vi har sat et argument, bliver vi nødt til at have en dødemandsknap,
@@ -46,15 +48,17 @@ public class ItemListFragment extends Fragment {
         uid = getActivity().getIntent().getStringExtra("refToUserID");
         mDatabase = FirebaseDatabase.getInstance().getReference().child(uid).child("wishes");
 
+        // Vi sørger for at data synkroniseres, så det kan tilgås i offline mode
         mDatabase.keepSynced(true);
 
+        // Layoutmanageren sættes
         layoutManager = new LinearLayoutManager(getActivity());
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+        // Vi inflater layoutet til dette fragment
         View v = inflater.inflate(R.layout.fragment_item_list, container, false);
         ButterKnife.bind(this,v);
 
@@ -62,20 +66,19 @@ public class ItemListFragment extends Fragment {
         return v;
     }
 
-
-    // Alt det der står i onStart skal muligvis rykkes, så det ikke gælder for alle steder hvor
-    // dette fragment bruges.
-    // FirebaseRecyclerAdapter er fundet i en tutorial. Bruges til at sætte views til diverse værdier
     @Override
     public void onStart() {
         super.onStart();
+
+        // Vi laver en adapter til firebasen
         final FirebaseRecyclerAdapter<Wish, WishViewHolder> firebaseRecyclerAdapter;
         firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<Wish, WishViewHolder>
                 (Wish.class, R.layout.item_list_recycleview, WishViewHolder.class, mDatabase) {
 
+            // Der sørges for at der kun bliver vist den data vi har på wishet
             @Override
             protected void populateViewHolder(WishViewHolder holder, Wish currentwish, final int position) {
-                if(currentwish.getName() != null) // Alle if'sne kan sættes i en funktion
+                if(currentwish.getName() != null)
                     holder.input_name.setText(currentwish.getName());
                 else {
                     holder.input_name.setVisibility(View.GONE);
@@ -152,7 +155,7 @@ public class ItemListFragment extends Fragment {
             }
 
         };
-        recyclerView.setAdapter(firebaseRecyclerAdapter);
+        recyclerView.setAdapter(firebaseRecyclerAdapter); // Adapteren sættes
     }
 
     // Viewholderen bruges til at instantiere og binde viewsne

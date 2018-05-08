@@ -16,15 +16,18 @@ import java.util.ArrayList;
 
 public class FriendFirebaseViewHolder extends RecyclerView.ViewHolder {
 
+    // Variabler instantieres
     public View friendView;
     public Context friendContext;
 
+    // Knappen til viewholderen instantieres
     public FriendFirebaseViewHolder(View v){
         super(v);
         friendView = v;
         friendContext = v.getContext();
     }
 
+    // Knappen bindes til data fra firebase via en arraylist
     public void bindFriendView(final Friend friend){
         Button friendName_btn = (Button) friendView.findViewById(R.id.friendName_btn);
         final ArrayList<Friend> friendsList = new ArrayList<>();
@@ -34,7 +37,6 @@ public class FriendFirebaseViewHolder extends RecyclerView.ViewHolder {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     friendsList.add(snapshot.getValue(Friend.class));
-                    Log.i("Friend Value: ", snapshot.getValue(Friend.class).toString());
                 }
             }
 
@@ -43,7 +45,7 @@ public class FriendFirebaseViewHolder extends RecyclerView.ViewHolder {
 
             }
         });
-        friendName_btn.setText(friend.getUsername());
+        friendName_btn.setText(friend.getUsername()); // Knappens tekst sættes til vennens brugernavn
 
         // Knappen sættes til at sende os videre til fragmentet
         friendName_btn.setOnClickListener(new View.OnClickListener() {

@@ -14,11 +14,12 @@ import butterknife.BindView;
 
 public class FriendsListActivity extends AppCompatActivity {
 
+    // Variabler instantieres og bindes
     private android.support.v4.app.FragmentManager mfragmentManager;
     private ItemListFragment fragment_recycle;
 
-    @BindView(R.id.itemlist_recycler_view) // Viewet i ItemListFragment
-    public RecyclerView recyclerView; // Ikke bindet i onCreate
+    @BindView(R.id.itemlist_recycler_view)
+    public RecyclerView recyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +27,7 @@ public class FriendsListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_friends_list);
         getSupportActionBar().setTitle(getResources().getString(R.string.title_friendsList));
 
+        // Vi sætter fragmentManageren og lavet en ny instans af ItemListFragment
         mfragmentManager = getSupportFragmentManager();
         fragment_recycle = new ItemListFragment();
 
@@ -34,12 +36,14 @@ public class FriendsListActivity extends AppCompatActivity {
                 .commit();
     }
 
+    // Menuen i toolbaren sættes
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_friends_list_activity, menu);
         return true;
     }
 
+    // Handlingen hvis der trykkes i menuen defineres
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         long id = item.getItemId();
