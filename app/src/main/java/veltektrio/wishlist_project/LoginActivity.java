@@ -48,12 +48,17 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         if(firebaseAuth.getCurrentUser() != null)
             startActivity(new Intent(this, MenuScreen.class));
 
+        // Der laves en instans af progressDialog
         progressDialog = new ProgressDialog(this);
 
+        // onClickListener sættes for de to knapper
         buttonSignin.setOnClickListener(this);
         textViewSignup.setOnClickListener(this);
     }
 
+    // Funktion til når der trykkes på signin-knappen
+    // Mail og password sættes og der gives en besked hvis disse er tomme
+    // Der vises en loadingbar og man sendes videre til menu screen hvis man er logget in succesfuldt
     private void userLogin() {
         String mail = editTextMail.getText().toString().trim();
         String password = editTextPassword.getText().toString().trim();
@@ -84,6 +89,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 });
     }
 
+    // onClick defineres for de to knapper
+    // userLogin-funktionen bruges hvis der trykkes på signin
+    // Man sendes videre til registeraktiviteten hvis man trykker på signin knappen
     @Override
     public void onClick(View view) {
         if(view == buttonSignin) {

@@ -25,7 +25,7 @@ import butterknife.ButterKnife;
 
 public class AddWishActivity extends AppCompatActivity {
 
-
+    // Variabler instantieres og bindes
     private DatabaseReference mDatabase;
 
     @BindView(R.id.editText_name)
@@ -60,10 +60,11 @@ public class AddWishActivity extends AppCompatActivity {
         final Intent intent_editWish = new Intent(getIntent());
         getSupportActionBar().setTitle(getResources().getString(R.string.title_addWish));
 
+        // Databasen sættes
         mDatabase = FirebaseDatabase.getInstance().getReference();
-        // Vi laver en variabel uid
-        String uid;
+
         // Hvis der er en user logget ind, sættes uid til brugerens uid og vi går ind i dennes database
+        String uid;
         if (firebaseUser != null) {
             uid = firebaseUser.getUid();
             mDatabase = FirebaseDatabase.getInstance().getReference().child(uid).child("wishes");
@@ -71,14 +72,14 @@ public class AddWishActivity extends AppCompatActivity {
             // Hvis fragmentet skal bruges til friends, skal vi måske lave en ny databasereference, der tilgår friends
         }
 
-
+        // Floating action button sættes
         FloatingActionButton fab_add = findViewById(R.id.fab_add);
         fab_add.setImageResource(R.drawable.ic_done_black_24dp);
         fab_add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-               System.out.println("TRYK");
+                // Der oprettes et nyt wish og variable sættes, hvis de er sat
                Wish newWish = new Wish();
                 //tester om editText er tomme
                 if (!TextUtils.isEmpty(et_name.getText()))
@@ -96,7 +97,7 @@ public class AddWishActivity extends AppCompatActivity {
                 if (!TextUtils.isEmpty(et_note.getText()))
                     newWish.setNote(et_note.getText().toString());
 
-
+                // Ønsket tilføjes til databasen og der gives besked om opgaven løses eller ej
                 mDatabase.child(newWish.getName()).setValue(newWish).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
@@ -113,15 +114,15 @@ public class AddWishActivity extends AppCompatActivity {
                     }
                 });
 
-                  finish();
+                  finish(); // onDestroy sættes i gang og vi fjerner aktiviteten fra backstacken
             }
         });
 
         //Når aktiviteten bruges til edit wish
         if(intent_editWish.getStringExtra("refToWish") != null)
         {
+            // Tekstfelterne til ønsket udfyldes og hvis de ændres eller hvis der bliver tilføjet tekst ændres dette
             String refToWish = getIntent().getStringExtra("refToWish");
-            Log.i("RefToWish", refToWish);
             DatabaseReference wishDatabase = FirebaseDatabase.getInstance().getReferenceFromUrl(refToWish);
             wishDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
