@@ -19,32 +19,27 @@ public class MyWishListActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_my_wish_list);
+        setContentView(R.layout.activity_my_wish_list); //Indeholder et fragment. Dette fragment er vores itemlist
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle(getResources().getString(R.string.title_myWishList));
 
-        /*--------------------- til addWish ----------------------------------------*/
-        FragmentManager mfragmentManager = getSupportFragmentManager();
-
-
+        /*--------------------- til addWish fab ----------------------------------------*/
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setImageResource(R.drawable.ic_add_black_24dp);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                System.out.println("fab click to addWish");
                 Intent intent_add = new Intent(getApplicationContext(), AddWishActivity.class);
                 startActivity(intent_add);
             }
         });
 
         /* ----------------------- til recycleview -----------------------------------*/
-        // Har tilføjet en bundle der sørger for det er den rigtige gren af databasen der tilgås
+
+        FragmentManager mfragmentManager = getSupportFragmentManager();
         Fragment fragment_recycle = new ItemListFragment();
-        Bundle bundle = new Bundle(); // Vi laver en bundle der skal sendes videre til fragmentet
-        bundle.putBoolean("mine", true); // mine sættes til true
-        fragment_recycle.setArguments(bundle); // på denne måde ved fragmentet at den skal sættes til mine-listen
+
         mfragmentManager.beginTransaction()
                 .add(R.id.MyWishList_ItemListFragment, fragment_recycle)
                 .commit();
