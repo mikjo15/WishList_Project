@@ -2,6 +2,11 @@ package veltektrio.wishlist_project;
 
 /**
  * Created by CathrineBuch on 14-03-2018.
+ *
+ * Dette er de ting som et wish kan indeholde.
+ * Man ville uden problemer kunne tilføje flere.
+ * Vi har taget de typiske detaljer med omkring et ønske.
+ * Bruges til at gemme og hente wish i fra databasen.
  */
 
 public class Wish {

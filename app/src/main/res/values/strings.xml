@@ -56,6 +56,7 @@
     <string name="signin_textv">Sign in</string>
     <string name="signin_hintEmail"> Enter your email</string>
     <string name="signin_hintPassword">Enter your password. Min. 6 characters</string>
+    <string name="signin_progressDialog">Logging in</string>
 
     <!-- Strings to registerUser -->
     <string name="toast_registerSuc">Register successful</string>
@@ -66,6 +67,7 @@
     <string name="register_textv">Register user</string>
     <string name="register_hintEmail"> Enter your email</string>
     <string name="register_hintPassword">Enter your password. Min. 6 characters</string>
+    <string name="register_progressDialog">Register user</string>
 
     <!-- Strings to myWishList -->
     <string name="title_myWishList">My wish list</string>

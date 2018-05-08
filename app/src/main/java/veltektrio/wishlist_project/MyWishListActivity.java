@@ -13,9 +13,6 @@ import butterknife.BindView;
 
 public class MyWishListActivity extends AppCompatActivity {
 
-    private FragmentManager mfragmentManager;
-    private Fragment fragment_recycle;
-
     @BindView(R.id.itemlist_recycler_view) // Viewet i ItemListFragment
     public RecyclerView recyclerView;
 
@@ -28,7 +25,7 @@ public class MyWishListActivity extends AppCompatActivity {
         getSupportActionBar().setTitle(getResources().getString(R.string.title_myWishList));
 
         /*--------------------- til addWish ----------------------------------------*/
-        mfragmentManager = getSupportFragmentManager();
+        FragmentManager mfragmentManager = getSupportFragmentManager();
 
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -44,7 +41,7 @@ public class MyWishListActivity extends AppCompatActivity {
 
         /* ----------------------- til recycleview -----------------------------------*/
         // Har tilføjet en bundle der sørger for det er den rigtige gren af databasen der tilgås
-        fragment_recycle = new ItemListFragment();
+        Fragment fragment_recycle = new ItemListFragment();
         Bundle bundle = new Bundle(); // Vi laver en bundle der skal sendes videre til fragmentet
         bundle.putBoolean("mine", true); // mine sættes til true
         fragment_recycle.setArguments(bundle); // på denne måde ved fragmentet at den skal sættes til mine-listen

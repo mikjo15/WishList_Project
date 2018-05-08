@@ -58,6 +58,7 @@
     <string name="signin_textv">Log ind</string>
     <string name="signin_hintEmail"> Indtast din email</string>
     <string name="signin_hintPassword">Indtast dit password. Min. 6 karakter</string>
+    <string name="signin_progressDialog">Logger ind</string>
 
     <!-- Strings to registerUser -->
     <string name="toast_registerSuc">Oprettelse successful</string>
@@ -68,6 +69,7 @@
     <string name="register_textv">Opret bruger</string>
     <string name="register_hintEmail"> Indtast din email</string>
     <string name="register_hintPassword">Indtast dit password. Min. 6 karakter</string>
+    <string name="register_progressDialog">Register bruger</string>
 
     <!-- Strings to myWishList -->
     <string name="title_myWishList">Min ønskeseddel</string>

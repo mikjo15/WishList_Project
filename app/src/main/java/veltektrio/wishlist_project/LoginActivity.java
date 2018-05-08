@@ -65,7 +65,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             return;
         }
 
-        progressDialog.setMessage("Registering user");
+        progressDialog.setMessage(getResources().getString(R.string.signin_progressDialog));
         progressDialog.show();
 
         firebaseAuth.signInWithEmailAndPassword(mail, password)

@@ -23,8 +23,8 @@ import butterknife.ButterKnife;
 
 public class RegisterActivity extends AppCompatActivity implements View.OnClickListener {
 
-    DatabaseReference mDatabase;
-    String user_uid;
+    private DatabaseReference mDatabase; //reference til firebase databasen (url)
+    private String user_uid;
 
     @BindView(R.id.buttonRegister)
     Button buttonRegister;
@@ -38,9 +38,9 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     @BindView(R.id.textViewSignin)
     TextView textViewSignin;
 
-    private ProgressDialog progressDialog;
+    private ProgressDialog progressDialog; //roterende cirkel når den loader (loadingskærm)
 
-    private FirebaseAuth firebaseAuth;
+    private FirebaseAuth firebaseAuth; //Object der kan fortælle om de er logget ind eller ej
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +48,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         setContentView(R.layout.activity_register);
         ButterKnife.bind(this);
 
-        firebaseAuth = FirebaseAuth.getInstance();
+        firebaseAuth = FirebaseAuth.getInstance(); //instance er de værdier members har fået tilføjet i en instance af objektet.
         mDatabase = FirebaseDatabase.getInstance().getReference();
 
         progressDialog = new ProgressDialog(this);
@@ -71,11 +71,11 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             return;
         }
 
-        progressDialog.setMessage("Registering user");
+        progressDialog.setMessage(getResources().getString(R.string.register_progressDialog));
         progressDialog.show();
 
         firebaseAuth.createUserWithEmailAndPassword(email, password)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() { //lytter efter når task'en er udført
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()) {
@@ -84,6 +84,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                             //adds the user to the database
                             FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
                             user_uid = firebaseUser.getUid();
+                            //Så fordi en key ikke kan stå uden value, sættes her name og new user. Dette er dummy værdier.
                             mDatabase.child(user_uid).child("name").setValue("new user").addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
