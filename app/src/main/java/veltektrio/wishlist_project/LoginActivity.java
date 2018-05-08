@@ -19,6 +19,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener{
+
+    // Variabler instantieres og bindes
     @BindView(R.id.buttonSignin)
     Button buttonSignin;
 
@@ -41,6 +43,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
 
+        // Vi undersøger om der er en bruger registreret
         firebaseAuth = FirebaseAuth.getInstance();
         if(firebaseAuth.getCurrentUser() != null)
             startActivity(new Intent(this, MenuScreen.class));

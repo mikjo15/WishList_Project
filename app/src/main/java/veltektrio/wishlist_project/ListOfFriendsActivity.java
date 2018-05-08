@@ -16,9 +16,10 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class ListOfFriendsActivity extends AppCompatActivity {
+
+    // Variabler instantieres og recyclerview bindes
     private DatabaseReference databaseToFriends;
     private FirebaseRecyclerAdapter adapterToFriendBtn;
-
 
     @BindView(R.id.listOfFriends_RecyclerView)
     RecyclerView listOfFriends_RecyclerView;
@@ -30,24 +31,25 @@ public class ListOfFriendsActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         getSupportActionBar().setTitle(getResources().getString(R.string.title_listOfFriends));
 
-        //Setup FAB button & OnClickListener for it
+        //Opsætning af FAB button & OnClickListener til den
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab_friend);
         fab.setImageResource(R.drawable.ic_add_black_24dp);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                System.out.println("fab click to add friend");
                 Intent intent_add = new Intent(getApplicationContext(), AddFriendActivity.class);
                 startActivity(intent_add);
             }
         });
 
+        // Databasen defineres og sættes
         databaseToFriends = FirebaseDatabase.getInstance().getReference().child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("friends");
         setUpFirebaseAdapter();
     }
 
+    // Opsætningsfunktionen laves
+    // Adapteren laves og sættes sammen med nogle yderligere detaljer
     public void setUpFirebaseAdapter(){
-        Log.i("TEST!!! ", "inside");
         adapterToFriendBtn = new FirebaseRecyclerAdapter<Friend, FriendFirebaseViewHolder>
                 (Friend.class, R.layout.friends_lists_btn, FriendFirebaseViewHolder.class,
                         databaseToFriends) {
@@ -62,6 +64,7 @@ public class ListOfFriendsActivity extends AppCompatActivity {
         listOfFriends_RecyclerView.setAdapter(adapterToFriendBtn);
     }
 
+    // Adapteren ryddes når aktiviteten destrueres
     @Override
     protected void onDestroy() {
         super.onDestroy();

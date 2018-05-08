@@ -24,10 +24,9 @@ public class ItemListFragment extends Fragment {
     @BindView(R.id.itemlist_recycler_view) // Her bindes recyclerviewet der viser ønskerne
     public RecyclerView recyclerView;
 
-    // private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
 
-    // Datareference bruges til at koble til db. Det er egentlig bare et link til Firebase på nettet
+    // Datareference bruges til at koble til db. Det er et link til Firebase på nettet
     private DatabaseReference mDatabase;
 
     String activity_from_intent;
@@ -36,26 +35,29 @@ public class ItemListFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        // Vi registrere hvilken aktivitet vi kommer fra
         activity_from_intent = getActivity().getIntent().getStringExtra("activity").trim();
 
-        // Da vi går ind i fragmentet inden vi har sat et argument, bliver vi nødt til at have en dødemandsknap,
+        // Da vi går ind i fragmentet inden vi har sat et argument, bliver vi nødt til at have en "dødemandsknap",
         // så der vil blive sat en database op uanset hvad
         String uid;
         uid = getActivity().getIntent().getStringExtra("refToUserID");
         mDatabase = FirebaseDatabase.getInstance().getReference().child(uid).child("wishes");
 
+        // Databasen synkroniseres til telefonen, så ønskerne er tilgængelige offline
         mDatabase.keepSynced(true);
 
         // Denne liste skal eksistere, jeg er ikke sikker på hvorfor. Binder muligvis fragment og activity sammen
         MyWishListActivity.myWishlist = new Wishlist();
 
+        // Vi sætter layoutmanageren
         layoutManager = new LinearLayoutManager(getActivity());
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+        // Vi inflater layoutet når viewet laves
         View v = inflater.inflate(R.layout.fragment_item_list, container, false);
         ButterKnife.bind(this,v);
 
@@ -63,20 +65,18 @@ public class ItemListFragment extends Fragment {
         return v;
     }
 
-
-    // Alt det der står i onStart skal muligvis rykkes, så det ikke gælder for alle steder hvor
-    // dette fragment bruges.
-    // FirebaseRecyclerAdapter er fundet i en tutorial. Bruges til at sætte views til diverse værdier
     @Override
     public void onStart() {
         super.onStart();
+        // Der laves en firebaserecycleradapter, der står for at fylde vores recyclerview med data fra vores firebase
         final FirebaseRecyclerAdapter<Wish, WishViewHolder> firebaseRecyclerAdapter;
         firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<Wish, WishViewHolder>
                 (Wish.class, R.layout.item_list_recycleview, WishViewHolder.class, mDatabase) {
 
+            // Her sættes tekstfelterne til den tilhørende tekst, hvis denne eksistere
             @Override
             protected void populateViewHolder(WishViewHolder holder, Wish currentwish, final int position) {
-                if(currentwish.getName() != null) // Alle if'sne kan sættes i en funktion
+                if(currentwish.getName() != null)
                     holder.input_name.setText(currentwish.getName());
                 else {
                     holder.input_name.setVisibility(View.GONE);
@@ -135,7 +135,6 @@ public class ItemListFragment extends Fragment {
                 holder.deleteButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Log.i("clicked", "Deleted");
                         getRef(position).removeValue();
                     }
                 });
@@ -143,7 +142,6 @@ public class ItemListFragment extends Fragment {
                 holder.editButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Log.i("clicked", "Edited wish");
                         String refToWish = getRef(position).toString();
                         Intent intent = new Intent(getContext(), AddWishActivity.class);
                         intent.putExtra("refToWish", refToWish);
@@ -153,7 +151,7 @@ public class ItemListFragment extends Fragment {
             }
 
         };
-        recyclerView.setAdapter(firebaseRecyclerAdapter);
+        recyclerView.setAdapter(firebaseRecyclerAdapter); // Adapteren sættes
     }
 
     // Viewholderen bruges til at instantiere og binde viewsne
